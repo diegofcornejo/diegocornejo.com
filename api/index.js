@@ -20,9 +20,9 @@ const handler = (req, res) => {
     const host = req.headers.host;
     const subdomain = host.split('.')[0];
     if (subdomain == 'meet') {
-        return res.redirect('https://meet.google.com/eyh-oehp-qsp')
+        return res.redirect(process.env.MEET_URL)
     }
-    return res.redirect('https://blog.diegocornejo.com');
+    return res.redirect(process.env.DEFAULT_URL);
 };
 
 module.exports = cors(handler);
