@@ -16,13 +16,21 @@ const cors = fn => async (req, res) => {
     return await fn(req, res)
 }
 
-const handler = (req, res) => {
-    const host = req.headers.host;
-    const subdomain = host.split('.')[0];
-    if (subdomain == 'meet') {
-        return res.redirect(process.env.MEET_URL)
-    }
-    return res.redirect(process.env.DEFAULT_URL);
+const subdomains = {
+    blog: process.env.BLOG_URL,
+    meet: process.env.MEET_URL,
+    calendar: process.env.CALENDAR_URL,
 };
 
-module.exports = cors(handler);
+const handler = (req, res) => {
+    const { host } = req.headers;
+    const subdomain = host.split('.')[0];
+
+    if (subdomains[subdomain]) {
+        return res.redirect(subdomains[subdomain]);
+    }
+
+    return res.redirect(process.env.BLOG_URL);
+};
+
+module.exports = handler;
