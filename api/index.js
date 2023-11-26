@@ -1,20 +1,21 @@
 import { cors } from '../middlewares'
 import createRedisClient from "../utils/redis"
 
-const handler = async (req, res) => {
+const DEFAULT_URL = process.env.DEFAULT_URL;
 
+const handler = async (req, res) => {
 	let client;
-	let REDIRECT_URL = process.env.DEFAULT_URL;
 	try {
 		client = await createRedisClient();
 		const { host } = req.headers;
 		const subdomain = host.split('.')[0];
-		const REDIRECT_URL_VALUE = await client.get(`domain:${subdomain}`);
-		if (REDIRECT_URL_VALUE) REDIRECT_URL = REDIRECT_URL_VALUE;
+		const redirectUrl = await client.get(`domain:${subdomain}`) || DEFAULT_URL;
+		return res.redirect(redirectUrl);
 	} catch (error) {
+		console.error('Error handling redirect:', error);
+		return res.redirect(DEFAULT_URL);
 	} finally {
-		client.quit();
-		return res.redirect(REDIRECT_URL);
+		if (client) client.quit();
 	}
 };
 

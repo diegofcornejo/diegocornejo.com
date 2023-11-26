@@ -1,5 +1,5 @@
 const auth = fn => async (req, res) => {
-	const apikey = req.headers['x-api-key'] || req.query.apikey;
+	const apikey = req.headers['x-api-key'] || req.query['x-api-key'];
 	if (!apikey) {
 		return res.status(401).json({ error: 'Unauthorized' });
 	}
