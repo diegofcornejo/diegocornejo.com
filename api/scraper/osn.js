@@ -39,7 +39,7 @@ const handler = async (_req, res) => {
 			res.status(200).json({ message: `One of the search terms appears on the page.` });
 		} else {
 			console.info(`None of the search terms appear on the page.`);
-			res.status(404).json({ message: `None of the search terms appear on the page.` });
+			res.status(200).json({ message: `None of the search terms appear on the page.` });
 		}
 	} catch (error) {
 		console.error('Error during the request:', error);
