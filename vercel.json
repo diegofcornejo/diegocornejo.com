@@ -1,5 +1,13 @@
 {
-  "rewrites": [
-		{ "source": "/dani", "destination": "/static/dani.html" },
-		{ "source": "/(.*)", "destination": "/api" }]
+	"rewrites": [
+		{
+			"source": "/dani",
+			"destination": "/static/dani.html"
+		},
+		{
+			"source": "/(.*)",
+			"destination": "/api"
+		}
+	],
+	"outputDirectory": "public"
 }
