@@ -2,11 +2,11 @@
 	"rewrites": [
 		{
 			"source": "/dani",
-			"destination": "/static/dani.html"
+			"destination": "/dani.html"
 		},
 		{
 			"source": "/(.*)",
-			"destination": "/api"
+			"destination": "/api/index.js"
 		}
 	],
 	"outputDirectory": "public"
