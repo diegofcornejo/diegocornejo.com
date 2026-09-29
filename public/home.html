@@ -8,11 +8,11 @@
     content="width=device-width, initial-scale=1.0"
   />
 
-  <title>Diego Cornejo — SRE, DevOps & Software Architect</title>
+  <title>Diego Cornejo — SRE, DevOps, Software Architecture & IoT</title>
 
   <meta
     name="description"
-    content="Diego Cornejo — SRE, DevOps Engineer, Software Architect and Full-Stack Developer. Building reliable infrastructure, scalable SaaS platforms, IoT solutions and software."
+    content="Diego Cornejo — SRE, DevOps engineer and software architect. Cloud infrastructure and SaaS platforms for telecom and connected devices, down to LoRaWAN integrations and binary payload decoding."
   />
 
   <link rel="canonical" href="https://diegocornejo.com/" />
@@ -21,11 +21,11 @@
   <meta property="og:url" content="https://diegocornejo.com/" />
   <meta
     property="og:title"
-    content="Diego Cornejo — SRE, DevOps & Software Architect"
+    content="Diego Cornejo — SRE, DevOps, Software Architecture & IoT"
   />
   <meta
     property="og:description"
-    content="Building reliable infrastructure, scalable SaaS platforms, IoT solutions and software that solves real-world problems."
+    content="Reliable systems, from cloud to device: cloud infrastructure, telecom SaaS platforms and LoRaWAN / IoT protocol engineering."
   />
 
   <meta name="theme-color" content="#080a0f" />
@@ -34,13 +34,31 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+  <link
+    rel="preload"
+    href="/fonts/plex-sans-var.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  />
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Diego Cornejo",
     "url": "https://diegocornejo.com",
-    "jobTitle": "SRE / DevOps Engineer / Software Architect",
+    "jobTitle": "SRE, DevOps Engineer & Software Architect",
+    "knowsAbout": [
+      "Site Reliability Engineering",
+      "DevOps",
+      "Software Architecture",
+      "IoT",
+      "LoRaWAN",
+      "Protocol Engineering",
+      "Telecom SaaS",
+      "Cloud Infrastructure"
+    ],
     "sameAs": [
       "https://blog.diegocornejo.com",
       "https://github.com/diegofcornejo",
@@ -50,6 +68,30 @@
   </script>
 
   <style>
+    @font-face {
+      font-family: "IBM Plex Sans";
+      src: url("/fonts/plex-sans-var.woff2") format("woff2");
+      font-weight: 400 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("/fonts/plex-mono-400.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("/fonts/plex-mono-500.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --background: #080a0f;
       --surface: rgba(255, 255, 255, 0.035);
@@ -67,6 +109,23 @@
       --success: #4ade80;
       --warning: #fbbf24;
 
+      --font-sans:
+        "IBM Plex Sans",
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        sans-serif;
+
+      --font-mono:
+        "IBM Plex Mono",
+        ui-monospace,
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
       --max-width: 1180px;
     }
 
@@ -75,37 +134,27 @@
     }
 
     html {
+      color-scheme: dark;
       scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+      scrollbar-color: #2a2e38 var(--background);
     }
 
     body {
       margin: 0;
 
       color: var(--text);
+      background: var(--background);
 
-      background:
-        radial-gradient(
-          circle at 70% 20%,
-          rgba(56, 189, 248, 0.10),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 20% 80%,
-          rgba(52, 211, 153, 0.05),
-          transparent 25%
-        ),
-        var(--background);
-
-      font-family:
-        Inter,
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
+      font-family: var(--font-sans);
       line-height: 1.6;
+
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      color: var(--text);
+      background: rgba(167, 243, 208, 0.28);
     }
 
     a {
@@ -113,9 +162,47 @@
       text-decoration: none;
     }
 
+    :focus-visible {
+      outline: 2px solid var(--accent-secondary);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
     .container {
       width: min(calc(100% - 40px), var(--max-width));
       margin-inline: auto;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -80px;
+      left: 16px;
+      z-index: 50;
+
+      padding: 10px 14px;
+
+      color: #07100d;
+      background: var(--accent-secondary);
+      border-radius: 8px;
+
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .skip-link:focus {
+      top: 12px;
     }
 
     /* HEADER */
@@ -128,8 +215,8 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
 
-      background: rgba(8, 10, 15, 0.72);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+      background: rgba(8, 10, 15, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     nav {
@@ -138,15 +225,18 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 20px;
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 10px;
 
-      font-weight: 650;
-      letter-spacing: -0.02em;
+      min-height: 44px;
+
+      font-weight: 600;
+      letter-spacing: -0.015em;
     }
 
     .brand-mark {
@@ -158,86 +248,81 @@
 
     .navigation {
       display: flex;
-      gap: 30px;
+      gap: 28px;
 
       color: var(--muted);
       font-size: 14px;
     }
 
     .navigation a {
+      display: inline-flex;
+      align-items: center;
+
+      min-height: 44px;
+
       transition: color 150ms ease;
     }
 
-    .navigation a:hover {
+    .navigation a:hover,
+    .navigation a[aria-current="true"] {
       color: var(--text);
+    }
+
+    .navigation a[aria-current="true"] {
+      text-decoration: underline;
+      text-decoration-color: var(--accent-secondary);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 8px;
     }
 
     /* HERO */
 
     .hero {
-      min-height: calc(100vh - 72px);
-
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 80px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 72px;
 
       align-items: center;
 
-      padding: 100px 0;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      margin-bottom: 24px;
-
-      color: var(--accent-secondary);
-
-      font-family:
-        "SFMono-Regular",
-        Consolas,
-        "Liberation Mono",
-        monospace;
-
-      font-size: 13px;
+      padding: 96px 0 112px;
     }
 
     h1 {
-      max-width: 850px;
+      max-width: 14ch;
 
       margin: 0;
 
-      font-size: clamp(52px, 7vw, 88px);
-      font-weight: 650;
+      font-size: clamp(44px, 5.6vw, 76px);
+      font-weight: 620;
 
-      line-height: 0.98;
-      letter-spacing: -0.06em;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+
+      text-wrap: balance;
     }
 
-    .gradient {
-      color: transparent;
+    .h1-accent {
+      color: var(--accent-secondary);
+    }
 
-      background:
-        linear-gradient(
-          90deg,
-          var(--accent),
-          var(--accent-secondary)
-        );
+    .role {
+      margin: 24px 0 0;
 
-      background-clip: text;
-      -webkit-background-clip: text;
+      color: var(--accent);
+
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
     }
 
     .hero-description {
-      max-width: 670px;
+      max-width: 58ch;
 
-      margin: 32px 0;
+      margin: 16px 0 36px;
 
       color: var(--muted);
 
-      font-size: clamp(18px, 2vw, 21px);
+      font-size: clamp(17px, 1.6vw, 19px);
       line-height: 1.7;
     }
 
@@ -253,6 +338,7 @@
       justify-content: center;
       gap: 8px;
 
+      min-height: 48px;
       padding: 12px 18px;
 
       border-radius: 8px;
@@ -264,7 +350,7 @@
       transition:
         background 150ms ease,
         border-color 150ms ease,
-        transform 150ms ease;
+        transform 150ms var(--ease-out);
     }
 
     .button:hover {
@@ -278,6 +364,10 @@
       border-color: var(--accent-secondary);
     }
 
+    .button-primary:hover {
+      background: #c2f7df;
+    }
+
     .button-secondary:hover {
       background: var(--surface-hover);
       border-color: var(--border-hover);
@@ -285,10 +375,10 @@
 
     .social {
       display: flex;
-      gap: 22px;
+      gap: 8px 24px;
       flex-wrap: wrap;
 
-      margin-top: 28px;
+      margin-top: 20px;
 
       color: var(--muted);
       font-size: 14px;
@@ -298,6 +388,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+
+      min-height: 44px;
 
       transition: color 150ms ease;
     }
@@ -353,20 +445,28 @@
       background: #3f424c;
     }
 
+    .terminal-title {
+      margin-left: 10px;
+
+      color: var(--muted);
+
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
     .terminal-body {
       height: 520px;
       overflow: hidden;
 
       padding: 26px;
 
-      font-family:
-        "SFMono-Regular",
-        Consolas,
-        "Liberation Mono",
-        monospace;
-
+      font-family: var(--font-mono);
       font-size: 13px;
-      line-height: 2;
+      line-height: 1.9;
+    }
+
+    .terminal-body > div {
+      white-space: pre-wrap;
     }
 
     .prompt {
@@ -422,6 +522,10 @@
       color: var(--muted);
     }
 
+    .log-hex {
+      color: var(--accent);
+    }
+
     @keyframes blink {
       50% {
         opacity: 0;
@@ -431,174 +535,155 @@
     /* SECTIONS */
 
     section {
-      padding: 110px 0;
+      padding: 112px 0;
     }
 
     .section-header {
       margin-bottom: 48px;
     }
 
-    .section-label {
-      margin-bottom: 10px;
-
-      color: var(--accent);
-
-      font-family:
-        "SFMono-Regular",
-        Consolas,
-        monospace;
-
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
     h2 {
       margin: 0;
 
-      font-size: clamp(32px, 5vw, 48px);
+      font-size: clamp(32px, 4.4vw, 48px);
+      font-weight: 620;
 
       line-height: 1.1;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.035em;
+
+      text-wrap: balance;
     }
 
     .section-description {
-      max-width: 700px;
+      max-width: 62ch;
 
-      margin-top: 16px;
+      margin: 16px 0 0;
 
       color: var(--muted);
     }
 
     /* EXPERTISE */
 
-    .expertise-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-
+    .areas {
       border-top: 1px solid var(--border);
-      border-left: 1px solid var(--border);
     }
 
-    .expertise {
-      min-height: 240px;
+    .area {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) 2fr;
+      gap: 40px;
 
-      padding: 30px;
+      padding: 36px 0;
 
-      border-right: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-
-      transition: background 150ms ease;
     }
 
-    .expertise:hover {
-      background: var(--surface);
+    .area h3 {
+      margin: 0;
+
+      font-size: 21px;
+      font-weight: 600;
+
+      line-height: 1.25;
+      letter-spacing: -0.02em;
     }
 
-    .expertise-number {
-      color: #565a65;
+    .area-lead h3 {
+      color: var(--accent-secondary);
 
-      font-family:
-        "SFMono-Regular",
-        Consolas,
-        monospace;
-
-      font-size: 12px;
+      font-size: clamp(22px, 2.4vw, 28px);
     }
 
-    .expertise h3 {
-      margin: 50px 0 12px;
+    .area p {
+      max-width: 62ch;
 
-      font-size: 20px;
-      letter-spacing: -0.025em;
-    }
-
-    .expertise p {
       margin: 0;
 
       color: var(--muted);
-
-      font-size: 14px;
     }
-
-    /* STACK */
 
     .stack {
-      margin-top: 50px;
-
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
+
+      margin: 20px 0 0;
+      padding: 0;
+
+      list-style: none;
     }
 
-    .technology {
-      padding: 7px 12px;
+    .stack li {
+      padding: 4px 10px;
 
       color: var(--muted);
 
       border: 1px solid var(--border);
       border-radius: 6px;
 
-      font-family:
-        "SFMono-Regular",
-        Consolas,
-        monospace;
-
-      font-size: 12px;
+      font-size: 13px;
     }
 
     /* ARTICLES */
 
     .articles {
-      display: grid;
-      gap: 0;
-
       border-top: 1px solid var(--border);
     }
 
     .article {
       display: grid;
-      grid-template-columns: 150px 1fr auto;
-      gap: 30px;
+      grid-template-columns: 140px 1fr auto;
+      gap: 28px;
 
       align-items: center;
 
-      padding: 28px 4px;
+      padding: 26px 12px;
 
       border-bottom: 1px solid var(--border);
 
-      transition:
-        padding 150ms ease,
-        background 150ms ease;
+      transition: background 150ms ease;
     }
 
     .article:hover {
-      padding-left: 14px;
-      padding-right: 14px;
-
       background: var(--surface);
     }
 
     .article-meta {
       color: var(--muted);
 
-      font-family:
-        "SFMono-Regular",
-        Consolas,
-        monospace;
-
       font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .article-title {
       font-weight: 550;
-      letter-spacing: -0.015em;
+      letter-spacing: -0.01em;
     }
 
     .arrow {
+      display: inline-flex;
+
       color: var(--muted);
 
-      font-size: 20px;
+      transition:
+        color 150ms ease,
+        transform 200ms var(--ease-out);
+    }
+
+    .arrow .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .article:hover .arrow {
+      color: var(--accent-secondary);
+      transform: translate(2px, -2px);
+    }
+
+    .articles-more {
+      margin-top: 28px;
     }
 
     /* CONTACT */
@@ -608,25 +693,16 @@
     }
 
     .contact-box {
-      padding: 60px;
+      padding: 56px;
 
       border: 1px solid var(--border);
       border-radius: 14px;
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(125, 211, 252, 0.05),
-          rgba(167, 243, 208, 0.025)
-        );
-    }
-
-    .contact-box h2 {
-      max-width: 650px;
+      background: var(--surface);
     }
 
     .contact-box p {
-      max-width: 650px;
+      max-width: 62ch;
 
       margin: 20px 0 30px;
 
@@ -636,7 +712,7 @@
     /* FOOTER */
 
     footer {
-      padding: 28px 0;
+      padding: 20px 0;
 
       border-top: 1px solid var(--border);
 
@@ -646,14 +722,28 @@
 
     .footer-content {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 12px 20px;
     }
 
     .footer-links {
       display: flex;
-      gap: 20px;
+      gap: 0 20px;
       flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      display: inline-flex;
+      align-items: center;
+
+      min-height: 44px;
+
+      transition: color 150ms ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
     }
 
     /* RESPONSIVE */
@@ -661,9 +751,9 @@
     @media (max-width: 900px) {
       .hero {
         grid-template-columns: 1fr;
-        gap: 60px;
+        gap: 56px;
 
-        padding: 80px 0;
+        padding: 72px 0 88px;
       }
 
       .terminal {
@@ -671,42 +761,58 @@
       }
 
       .terminal-body {
-        height: 440px;
+        height: 460px;
       }
 
-      .expertise-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .area {
+        grid-template-columns: 1fr;
+        gap: 14px;
+
+        padding: 28px 0;
       }
     }
 
     @media (max-width: 640px) {
       .container {
-        width: min(calc(100% - 28px), var(--max-width));
+        width: min(calc(100% - 32px), var(--max-width));
       }
 
-      .navigation a:not(:last-child) {
-        display: none;
+      .navigation {
+        gap: 18px;
+      }
+
+      .brand-name {
+        position: absolute;
+
+        width: 1px;
+        height: 1px;
+
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
       }
 
       .hero {
-        padding-top: 65px;
-      }
-
-      h1 {
-        font-size: clamp(48px, 15vw, 70px);
+        padding-top: 56px;
       }
 
       section {
         padding: 80px 0;
       }
 
-      .expertise-grid {
-        grid-template-columns: 1fr;
+      .terminal-body {
+        height: 440px;
+        padding: 18px;
+
+        font-size: 12px;
+        line-height: 1.85;
       }
 
       .article {
         grid-template-columns: 1fr auto;
-        gap: 8px;
+        gap: 8px 16px;
+
+        padding: 22px 4px;
       }
 
       .article-meta {
@@ -714,11 +820,28 @@
       }
 
       .contact-box {
-        padding: 34px 26px;
+        padding: 34px 24px;
       }
 
       .footer-content {
         flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .cursor {
+        animation: none;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
       }
     }
   </style>
@@ -726,8 +849,19 @@
 
 <body>
 
+  <svg width="0" height="0" style="position: absolute;" aria-hidden="true">
+    <symbol id="i-arrow-right" viewBox="0 0 24 24">
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24">
+      <path d="M7 17 17 7M8 7h9v9" />
+    </symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <header>
-    <nav class="container">
+    <nav class="container" aria-label="Main">
 
       <a href="/" class="brand">
         <svg class="brand-mark" viewBox="0 0 268 288" aria-hidden="true">
@@ -735,13 +869,12 @@
             <path d="M76 2826 c-21 -71 -20 -117 3 -196 38 -130 97 -227 178 -292 73 -59 77 -59 463 -67 220 -4 347 -10 335 -16 -34 -15 -157 -109 -211 -161 -174 -169 -272 -365 -295 -589 -7 -60 -15 -113 -18 -117 -3 -4 -62 -11 -131 -17 -104 -8 -136 -15 -191 -39 -125 -56 -209 -177 -209 -302 l0 -31 28 26 c62 59 129 95 175 95 91 0 169 -59 220 -168 28 -60 30 -74 31 -177 l1 -111 -43 -87 c-23 -47 -48 -92 -55 -99 -7 -7 -38 -47 -69 -88 -31 -41 -86 -107 -122 -145 l-65 -70 29 -3 c20 -2 43 7 77 31 26 18 80 55 118 82 155 108 236 176 379 319 138 139 205 246 256 416 20 64 23 93 21 224 -1 82 -4 153 -7 158 -4 5 -1 134 5 286 10 238 15 285 33 337 36 100 136 219 212 250 21 9 40 14 43 11 3 -2 -6 -47 -20 -98 -15 -51 -29 -109 -32 -128 -3 -19 -12 -62 -20 -95 -26 -113 -38 -400 -25 -619 7 -110 9 -226 6 -258 -15 -131 -85 -276 -191 -397 -31 -35 -189 -155 -283 -216 -9 -5 -48 -33 -86 -60 -39 -28 -91 -64 -116 -80 -25 -17 -49 -36 -53 -42 -4 -7 -12 -13 -17 -13 -18 0 -293 -195 -299 -212 -2 -7 -10 -19 -18 -26 -43 -43 40 -61 92 -20 33 26 273 148 291 148 7 0 25 7 41 15 125 64 501 125 695 112 166 -12 285 -26 380 -47 184 -40 380 -89 432 -109 26 -11 32 -8 75 31 130 119 211 180 366 276 11 6 59 31 107 54 l87 43 1 340 c0 467 -17 691 -69 915 -69 295 -123 440 -214 574 -93 139 -197 231 -315 280 -80 33 -139 44 -336 62 -185 16 -500 10 -1045 -21 -345 -20 -376 -20 -432 8 -64 31 -91 55 -137 121 l-40 57 -16 -55z m1382 -1326 c1 -432 0 -790 -2 -795 -3 -9 -303 -1 -313 8 -1 2 11 29 27 60 42 80 76 171 96 252 15 60 16 81 6 165 -29 231 1 798 51 970 38 130 39 130 107 126 l25 -1 3 -785z m247 760 c121 -10 167 -27 245 -88 169 -133 271 -327 258 -488 -4 -51 -9 -61 -39 -86 -82 -69 -209 -118 -303 -118 -81 0 -201 40 -253 85 -60 51 -63 72 -63 409 l0 296 23 0 c12 0 72 -5 132 -10z m525 -852 c1 -57 5 -161 9 -233 5 -71 7 -131 6 -133 -2 -2 -34 10 -72 26 -97 42 -162 55 -282 55 -106 0 -171 -14 -273 -57 -21 -9 -42 -16 -48 -16 -6 0 -10 77 -10 224 l0 225 43 -24 c23 -13 74 -36 112 -51 130 -51 316 -34 416 36 15 11 34 20 42 20 8 0 20 7 27 15 24 29 30 14 30 -87z m-238 -374 c71 -16 167 -62 221 -107 38 -30 46 -75 47 -255 l0 -143 -37 7 c-21 3 -63 14 -93 24 -91 29 -315 78 -455 100 -33 6 -75 12 -92 15 l-33 6 0 114 0 113 38 29 c46 35 96 59 187 89 84 28 123 29 217 8z"/>
           </g>
         </svg>
-        Diego Cornejo
+        <span class="brand-name">Diego Cornejo</span>
       </a>
 
       <div class="navigation">
-        <a href="#about">About</a>
+        <a href="#work">What I do</a>
         <a href="#writing">Writing</a>
-        <a href="https://blog.diegocornejo.com" target="_blank" rel="noopener noreferrer">Blog</a>
         <a href="#contact">Contact</a>
       </div>
 
@@ -749,7 +882,7 @@
   </header>
 
 
-  <main>
+  <main id="main">
 
     <!-- HERO -->
 
@@ -757,45 +890,40 @@
 
       <div>
 
-        <div class="eyebrow">
-          <span>~/</span>
-          SRE · DevOps · Software Architecture · IoT
-        </div>
-
         <h1>
-          I build
-          <span class="gradient">reliable systems.</span>
+          I build reliable systems,
+          <span class="h1-accent">from cloud to device.</span>
         </h1>
 
+        <p class="role">
+          SRE · DevOps · Software Architecture · IoT
+        </p>
+
         <p class="hero-description">
-          I'm Diego Cornejo, a software engineer focused on
-          infrastructure, distributed systems, cloud architecture,
-          IoT, protocol engineering and scalable software products.
+          I'm Diego Cornejo. I design and run cloud infrastructure and
+          SaaS platforms for telecom and connected-device environments,
+          and I work down at the protocol level: LoRaWAN integrations,
+          binary payload decoding and device telemetry.
         </p>
 
         <div class="actions">
 
           <a
             class="button button-primary"
+            href="#contact"
+          >
+            Get in touch
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+          </a>
+
+          <a
+            class="button button-secondary"
             href="https://blog.diegocornejo.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Read my blog →
-          </a>
-
-          <a
-            class="button button-secondary"
-            href="#about"
-          >
-            What I do
-          </a>
-
-          <a
-            class="button button-secondary"
-            href="#contact"
-          >
-            Get in touch
+            Read the blog
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
           </a>
 
         </div>
@@ -810,7 +938,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
             </svg>
-            diegofcornejo
+            GitHub · diegofcornejo
           </a>
 
           <a
@@ -829,51 +957,32 @@
       </div>
 
 
-      <div class="terminal">
+      <div class="terminal" aria-hidden="true">
 
         <div class="terminal-header">
           <span class="dot"></span>
           <span class="dot"></span>
           <span class="dot"></span>
+          <span class="terminal-title">diego@home: ~</span>
         </div>
 
         <div class="terminal-body" id="terminal-body">
-
-          <div>
-            <span class="prompt">diego@home</span>
-            <span class="command">:~$ whoami</span>
-          </div>
-
+          <div><span class="prompt">diego@home</span> <span class="command">:~$ whoami</span></div>
           <div class="output">Diego Cornejo</div>
-
           <div>&nbsp;</div>
-
-          <div>
-            <span class="prompt">diego@home</span>
-            <span class="command">:~$ cat profile.json</span>
-          </div>
-
+          <div><span class="prompt">diego@home</span> <span class="command">:~$ cat profile.json</span></div>
           <div class="output">{</div>
-          <div class="output">&nbsp;&nbsp;<span class="terminal-key">"role"</span>: "SRE / Software Engineer",</div>
-          <div class="output">&nbsp;&nbsp;<span class="terminal-key">"cloud"</span>: ["AWS", "Azure", "OCI", "Vercel", "Cloudflare"],</div>
-          <div class="output">&nbsp;&nbsp;<span class="terminal-key">"focus"</span>: [</div>
-          <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;"reliability",</div>
-          <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;"architecture",</div>
-          <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;"automation",</div>
-          <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;"IoT &amp; LoRaWAN",</div>
-          <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;"protocol engineering",</div>
-          <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;"AI"</div>
-          <div class="output">&nbsp;&nbsp;]</div>
+          <div class="output">  <span class="terminal-key">"role"</span>: "SRE / DevOps / Software Architect",</div>
+          <div class="output">  <span class="terminal-key">"focus"</span>: [</div>
+          <div class="output">    "IoT &amp; LoRaWAN", "protocol engineering",</div>
+          <div class="output">    "telecom SaaS", "reliability",</div>
+          <div class="output">    "automation", "AI"</div>
+          <div class="output">  ],</div>
+          <div class="output">  <span class="terminal-key">"cloud"</span>: ["AWS", "Azure", "OCI",</div>
+          <div class="output">            "Vercel", "Cloudflare"]</div>
           <div class="output">}</div>
-
           <div>&nbsp;</div>
-
-          <div>
-            <span class="prompt">diego@home</span>
-            <span class="command">:~$</span>
-            <span class="cursor"></span>
-          </div>
-
+          <div><span class="prompt">diego@home</span> <span class="command">:~$</span> <span class="cursor"></span></div>
         </div>
 
       </div>
@@ -881,251 +990,143 @@
     </section>
 
 
-    <!-- ABOUT -->
+    <!-- WHAT I DO -->
 
-    <section id="about">
+    <section id="work">
 
       <div class="container">
 
         <div class="section-header">
 
-          <div class="section-label">
-            01 / What I do
-          </div>
-
-          <h2>
-            From infrastructure<br>
-            to product.
-          </h2>
+          <h2>What I do</h2>
 
           <p class="section-description">
-            I work across the stack, from Linux, networking and cloud
-            infrastructure to APIs, SaaS platforms, IoT systems,
-            device protocols and modern AI-enabled applications.
-            I'm also an open-source enthusiast: I like to build in
-            the open and share what I learn.
+            I work across the whole system: radios and device protocols,
+            the SaaS platforms that ingest their data, and the cloud,
+            network and security underneath. I'm also an open-source
+            enthusiast: I like to build in the open and share what I learn.
           </p>
 
         </div>
 
 
-        <div class="expertise-grid">
+        <div class="areas">
 
-          <article class="expertise">
+          <article class="area area-lead">
 
-            <span class="expertise-number">01</span>
+            <h3>IoT &amp; protocol engineering</h3>
 
-            <h3>Cloud & Infrastructure</h3>
+            <div>
+              <p>
+                LoRa and LoRaWAN integrations, binary payload decoding,
+                protocol analysis, telemetry processing and device
+                communication for IoT platforms.
+              </p>
 
-            <p>
-              Architecture on AWS, Azure and Oracle Cloud, edge and
-              deployments with Vercel and Cloudflare, containers,
-              infrastructure automation and production operations.
-            </p>
-
-          </article>
-
-
-          <article class="expertise">
-
-            <span class="expertise-number">02</span>
-
-            <h3>SRE & Observability</h3>
-
-            <p>
-              Reliability engineering, monitoring, logging,
-              incident analysis and operational automation.
-            </p>
+              <ul class="stack" aria-label="IoT tools and skills">
+                <li>LoRa</li>
+                <li>LoRaWAN</li>
+                <li>The Things Stack</li>
+                <li>IoT</li>
+                <li>Payload Decoding</li>
+                <li>Protocol Analysis</li>
+              </ul>
+            </div>
 
           </article>
 
 
-          <article class="expertise">
+          <article class="area area-lead">
 
-            <span class="expertise-number">03</span>
+            <h3>SaaS &amp; telecom platforms</h3>
 
-            <h3>Software Architecture</h3>
+            <div>
+              <p>
+                Designing and operating SaaS platforms, integrations and
+                systems for telecom and connected-device environments.
+                Scalable APIs and distributed systems with pragmatic
+                architectural decisions, from backend services to the
+                web applications on top.
+              </p>
 
-            <p>
-              Designing scalable SaaS platforms, APIs and distributed
-              systems with pragmatic architectural decisions.
-            </p>
-
-          </article>
-
-
-          <article class="expertise">
-
-            <span class="expertise-number">04</span>
-
-            <h3>Full-Stack Development</h3>
-
-            <p>
-              Building web applications, backend services,
-              integrations and production-ready software.
-            </p>
-
-          </article>
-
-
-          <article class="expertise">
-
-            <span class="expertise-number">05</span>
-
-            <h3>Security</h3>
-
-            <p>
-              Secure infrastructure, application security,
-              authentication and practical security engineering.
-            </p>
+              <ul class="stack" aria-label="Platform and application stack">
+                <li>Node.js</li>
+                <li>Express.js</li>
+                <li>TypeScript</li>
+                <li>JavaScript</li>
+                <li>Python</li>
+                <li>React</li>
+                <li>Next.js</li>
+                <li>Astro</li>
+                <li>Svelte</li>
+                <li>Tailwind CSS</li>
+                <li>PostgreSQL</li>
+                <li>MySQL</li>
+                <li>Oracle Database</li>
+                <li>SQL Server</li>
+                <li>MongoDB</li>
+                <li>Redis</li>
+              </ul>
+            </div>
 
           </article>
 
 
-          <article class="expertise">
+          <article class="area">
 
-            <span class="expertise-number">06</span>
+            <h3>Cloud, SRE &amp; networking</h3>
 
-            <h3>IoT & Protocol Engineering</h3>
+            <div>
+              <p>
+                Architecture on AWS, Azure and Oracle Cloud, edge
+                deployments with Vercel and Cloudflare, containers and
+                infrastructure automation. Reliability engineering,
+                monitoring, logging and incident analysis, plus the
+                network and security underneath: TCP/IP, routing, VPNs,
+                reverse tunnels, firewalls, DNS and authentication.
+              </p>
 
-            <p>
-              LoRa and LoRaWAN integrations, binary payload decoding,
-              protocol analysis, telemetry processing and device
-              communication for IoT platforms.
-            </p>
-
-          </article>
-
-
-          <article class="expertise">
-
-            <span class="expertise-number">07</span>
-
-            <h3>AI & LLMs</h3>
-
-            <p>
-              Integrating LLMs, RAG, AI agents and natural-language
-              interfaces into real software products.
-            </p>
-
-          </article>
-
-
-          <article class="expertise">
-
-            <span class="expertise-number">08</span>
-
-            <h3>Networking</h3>
-
-            <p>
-              TCP/IP networking, routing, VPNs, reverse tunnels,
-              firewalls, DNS and secure connectivity between systems.
-            </p>
+              <ul class="stack" aria-label="Infrastructure stack">
+                <li>AWS</li>
+                <li>Azure</li>
+                <li>Oracle Cloud</li>
+                <li>Vercel</li>
+                <li>Cloudflare</li>
+                <li>Linux</li>
+                <li>Docker</li>
+                <li>Docker Compose</li>
+                <li>Kubernetes</li>
+                <li>Terraform</li>
+                <li>CI/CD</li>
+                <li>NGINX</li>
+                <li>Prometheus</li>
+                <li>Grafana</li>
+              </ul>
+            </div>
 
           </article>
 
 
-          <article class="expertise">
+          <article class="area">
 
-            <span class="expertise-number">09</span>
+            <h3>AI &amp; LLMs</h3>
 
-            <h3>SaaS & Telecom</h3>
+            <div>
+              <p>
+                Integrating LLMs, RAG, AI agents and natural-language
+                interfaces into real software products.
+              </p>
 
-            <p>
-              Designing and operating SaaS platforms, integrations
-              and systems for telecom and connected-device environments.
-            </p>
+              <ul class="stack" aria-label="AI tools">
+                <li>OpenAI</li>
+                <li>Claude</li>
+                <li>DeepSeek</li>
+                <li>RAG</li>
+                <li>LLMs</li>
+              </ul>
+            </div>
 
           </article>
-
-        </div>
-
-
-        <div class="stack">
-
-          <span class="technology">AWS</span>
-
-          <span class="technology">Azure</span>
-
-          <span class="technology">Oracle Cloud</span>
-
-          <span class="technology">Vercel</span>
-
-          <span class="technology">Cloudflare</span>
-
-          <span class="technology">Linux</span>
-
-          <span class="technology">Docker</span>
-
-          <span class="technology">Docker Compose</span>
-
-          <span class="technology">Kubernetes</span>
-
-          <span class="technology">Terraform</span>
-
-          <span class="technology">CI/CD</span>
-
-          <span class="technology">NGINX</span>
-
-          <span class="technology">Prometheus</span>
-
-          <span class="technology">Grafana</span>
-
-          <span class="technology">JavaScript</span>
-
-          <span class="technology">TypeScript</span>
-
-          <span class="technology">Python</span>
-
-          <span class="technology">Node.js</span>
-
-          <span class="technology">Express.js</span>
-
-          <span class="technology">React</span>
-
-          <span class="technology">Next.js</span>
-
-          <span class="technology">Astro</span>
-
-          <span class="technology">Svelte</span>
-
-          <span class="technology">Tailwind CSS</span>
-
-          <span class="technology">PostgreSQL</span>
-
-          <span class="technology">MySQL</span>
-
-          <span class="technology">Oracle Database</span>
-
-          <span class="technology">SQL Server</span>
-
-          <span class="technology">MongoDB</span>
-
-          <span class="technology">Redis</span>
-
-          <span class="technology">LoRa</span>
-
-          <span class="technology">LoRaWAN</span>
-
-          <span class="technology">The Things Stack</span>
-
-          <span class="technology">IoT</span>
-
-          <span class="technology">Payload Decoding</span>
-
-          <span class="technology">Protocol Analysis</span>
-
-          <span class="technology">OpenAI</span>
-
-          <span class="technology">Claude</span>
-
-          <span class="technology">DeepSeek</span>
-
-          <span class="technology">RAG</span>
-
-          <span class="technology">LLMs</span>
-
-          <span class="technology">Open Source</span>
 
         </div>
 
@@ -1142,17 +1143,11 @@
 
         <div class="section-header">
 
-          <div class="section-label">
-            02 / Writing
-          </div>
-
-          <h2>
-            Notes from the field.
-          </h2>
+          <h2>Writing</h2>
 
           <p class="section-description">
-            Things I learn, break, debug and occasionally
-            document so I don't have to figure them out twice.
+            Notes from the field: things I learn, break, debug and
+            occasionally document so I don't have to figure them out twice.
           </p>
 
         </div>
@@ -1162,84 +1157,73 @@
 
           <a
             class="article"
-            href="https://blog.diegocornejo.com"
+            href="https://blog.diegocornejo.com/deepsec-vercel-security-harness-practical-guide"
             target="_blank"
             rel="noopener noreferrer"
           >
-
-            <div class="article-meta">
-              SECURITY
-            </div>
+            <div class="article-meta">Security</div>
 
             <div class="article-title">
               Deepsec / Vercel Security Harness:
-              practical guide & troubleshooting
+              practical guide &amp; troubleshooting
             </div>
 
-            <div class="arrow">
-              ↗
-            </div>
-
+            <span class="arrow">
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+            </span>
           </a>
 
 
           <a
             class="article"
-            href="https://blog.diegocornejo.com"
+            href="https://blog.diegocornejo.com/setting-up-a-monitoring-stack-in-docker-compose"
             target="_blank"
             rel="noopener noreferrer"
           >
-
-            <div class="article-meta">
-              DEVOPS
-            </div>
+            <div class="article-meta">DevOps</div>
 
             <div class="article-title">
               Setting Up a Monitoring Stack
               with Docker Compose
             </div>
 
-            <div class="arrow">
-              ↗
-            </div>
-
+            <span class="arrow">
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+            </span>
           </a>
 
 
           <a
             class="article"
-            href="https://blog.diegocornejo.com"
+            href="https://blog.diegocornejo.com/export-aws-ssm-parameter-store-as-environment-variables-with-bash"
             target="_blank"
             rel="noopener noreferrer"
           >
-
-            <div class="article-meta">
-              AWS
-            </div>
+            <div class="article-meta">AWS</div>
 
             <div class="article-title">
               Export AWS SSM Parameter Store
               as Environment Variables with Bash
             </div>
 
-            <div class="arrow">
-              ↗
-            </div>
-
+            <span class="arrow">
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+            </span>
           </a>
 
         </div>
 
 
-        <div style="margin-top: 28px;">
+        <div class="articles-more">
 
           <a
             class="button button-secondary"
-            href="https://blog.diegocornejo.com"
+            href="https://blog.diegocornejo.com/archive"
             target="_blank"
             rel="noopener noreferrer"
           >
-            View all articles →
+            All articles
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
           </a>
 
         </div>
@@ -1260,18 +1244,12 @@
 
         <div class="contact-box">
 
-          <div class="section-label">
-            03 / Contact
-          </div>
-
-          <h2>
-            Let's build something reliable.
-          </h2>
+          <h2>Get in touch</h2>
 
           <p>
-            Interested in software architecture, cloud infrastructure,
-            DevOps, SaaS, IoT, LoRaWAN, AI or just want to talk about
-            technology? Feel free to reach out.
+            Interested in IoT and LoRaWAN, telecom SaaS, cloud
+            infrastructure, DevOps, software architecture or AI, or just
+            want to talk about technology? Feel free to reach out.
           </p>
 
           <div class="actions">
@@ -1289,7 +1267,8 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              RamdomTechGuy ↗
+              Blog · RandomTechGuy
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
             </a>
 
             <a
@@ -1298,7 +1277,8 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              GitHub ↗
+              GitHub
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
             </a>
 
             <a
@@ -1307,7 +1287,8 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              LinkedIn ↗
+              LinkedIn
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
             </a>
 
           </div>
@@ -1343,9 +1324,9 @@
           LinkedIn
         </a>
 
-        <span>
-          RamdomTechGuy
-        </span>
+        <a href="mailto:info@diegocornejo.com">
+          Email
+        </a>
 
       </div>
 
@@ -1360,6 +1341,38 @@
   </script>
 
   <script>
+    // Mark the nav link of the section currently in view
+    (() => {
+      const links = [...document.querySelectorAll(".navigation a[href^='#']")];
+      const sections = links
+        .map((link) => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
+
+      if (!("IntersectionObserver" in window) || !sections.length) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            const link = links.find(
+              (l) => l.getAttribute("href") === "#" + entry.target.id
+            );
+            if (!link) continue;
+            if (entry.isIntersecting) {
+              links.forEach((l) => l.removeAttribute("aria-current"));
+              link.setAttribute("aria-current", "true");
+            } else if (link.hasAttribute("aria-current")) {
+              link.removeAttribute("aria-current");
+            }
+          }
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+
+      sections.forEach((section) => observer.observe(section));
+    })();
+  </script>
+
+  <script>
     (() => {
       const body = document.getElementById("terminal-body");
 
@@ -1369,33 +1382,68 @@
 
       if (!body || reducedMotion) return;
 
-      const COMMAND = "git push origin main";
       const SPINNER = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 
-      // [type, text, result, duration(ms), highlight]
-      const PIPELINE = [
-        ["info", "→ Pipeline #1284 triggered on main (a3f9c21)"],
-        ["task", "Checking out repository", "Repository checked out", 600],
-        ["task", "Installing dependencies", "412 packages installed in 8.2s", 1400],
-        ["task", "Linting", "Lint passed, 0 warnings", 800],
-        ["task", "Type checking", "No type errors", 900],
-        ["task", "Running unit tests", "Tests passed 10/10", 1500, true],
-        ["task", "Running integration tests", "Integration tests passed 24/24", 1700, true],
-        ["task", "Security check in progress", "Security scan: 0 critical, 0 high", 1800],
-        ["task", "Auditing dependencies", "No known vulnerabilities", 900],
-        ["warn", "⚠ Image size increased by 2.1 MB"],
-        ["task", "Building Docker image", "Image built api:1.4.2 (84 MB)", 1600],
-        ["task", "Pushing image to registry", "Pushed to ECR", 1000],
-        ["task", "terraform plan", "Plan: 2 to add, 1 to change, 0 to destroy", 1200],
-        ["task", "terraform apply", "Apply complete", 1400],
-        ["task", "Deployment started (production)", "Rolling update: 3/3 pods ready", 2000],
-        ["task", "Running health checks", "GET /health 200 OK (38ms)", 900],
-        ["task", "Purging CDN cache", "Cloudflare cache purged", 700],
-        ["task", "Notifying #deploys", "Slack notification sent", 500],
-        ["done", "✓ Deployed to production in 2m 14s"],
+      // Each act: a command typed at the prompt, then its steps.
+      // Steps: ["info" | "warn" | "done", text]
+      //        ["line", className, text, pause(ms)]
+      //        ["task", text, result, duration(ms), highlight]
+      const ACTS = [
+        {
+          command: "mosquitto_sub -t 'v3/+/devices/+/up'",
+          steps: [
+            ["info", "→ Subscribed to The Things Stack uplinks"],
+            ["line", "log-muted", "↑ uplink  eui-70b3d57ed005a1f2  fPort 2", 500],
+            ["line", "log-muted", "  SF7BW125  RSSI -97 dBm  SNR 7.5 dB", 300],
+            ["line", "log-hex", "  01 67 00 E5 02 68 5A 03 02 01 7C", 600],
+            ["task", "Decoding payload (Cayenne LPP)", "3 channels decoded", 900],
+            ["line", "output", '  { "temperature": 22.9, "humidity": 45,', 120],
+            ["line", "output", '    "battery_v": 3.8 }', 500],
+            ["task", "Validating readings", "All readings within thresholds", 700],
+            ["task", "Writing to time series", "1 point written", 800],
+            ["task", "Queuing downlink", "Downlink queued: fPort 10, 0x01", 800, true],
+            ["line", "log-muted", "↑ uplink  eui-70b3d57ed005a1f3  fPort 2", 900],
+            ["line", "log-hex", "  01 67 FF D8 03 02 01 36", 600],
+            ["task", "Decoding payload (Cayenne LPP)", "2 channels decoded", 800],
+            ["line", "output", '  { "temperature": -4.0, "battery_v": 3.1 }', 500],
+            ["warn", "⚠ battery_v below 3.3 V on eui-…a1f3, alert raised"],
+            ["done", "✓ 2 uplinks decoded, 0 dropped"],
+          ],
+        },
+        {
+          command: "git push origin main",
+          steps: [
+            ["info", "→ Pipeline triggered on main"],
+            ["task", "Checking out repository", "Repository checked out", 600],
+            ["task", "Installing dependencies", "Dependencies installed", 1400],
+            ["task", "Linting", "Lint passed, 0 warnings", 800],
+            ["task", "Type checking", "No type errors", 900],
+            ["task", "Running unit tests", "Unit tests passed", 1500, true],
+            ["task", "Running integration tests", "Integration tests passed", 1700, true],
+            ["task", "Security scan", "0 critical, 0 high", 1800],
+            ["task", "Auditing dependencies", "No known vulnerabilities", 900],
+            ["task", "Building Docker image", "Image built", 1600],
+            ["task", "Pushing image to registry", "Pushed to ECR", 1000],
+            ["task", "terraform plan", "Plan: 2 to add, 1 to change, 0 to destroy", 1200],
+            ["task", "terraform apply", "Apply complete", 1400],
+            ["task", "Rolling out (production)", "Rolling update: all pods ready", 2000],
+            ["task", "Running health checks", "GET /health 200 OK", 900],
+            ["task", "Purging CDN cache", "Cloudflare cache purged", 700],
+            ["done", "✓ Deployed to production"],
+          ],
+        },
       ];
 
-      const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+      // Timers keep running in a background tab; wait until it is visible again
+      const whenVisible = () =>
+        document.hidden
+          ? new Promise((r) =>
+              document.addEventListener("visibilitychange", r, { once: true })
+            ).then(whenVisible)
+          : Promise.resolve();
+
+      const sleep = (ms) =>
+        new Promise((r) => setTimeout(r, ms)).then(whenVisible);
 
       // Drop lines from the top once the terminal is full
       const trimOverflow = () => {
@@ -1464,17 +1512,21 @@
         trimOverflow();
       };
 
-      const runPipeline = async () => {
-        for (const step of PIPELINE) {
+      const runSteps = async (steps) => {
+        for (const step of steps) {
           const [type, text] = step;
 
           if (type === "task") {
             await runTask(step);
+          } else if (type === "line") {
+            const [, className, content, pause] = step;
+            addLine(span(className, content));
+            await sleep(pause);
           } else if (type === "warn") {
             addLine(span("log-warn", text));
             await sleep(500);
           } else if (type === "done") {
-            addLine("\u00a0");
+            addLine(" ");
             addLine(span("log-ok", text));
           } else {
             addLine(span("log-info", text));
@@ -1519,23 +1571,29 @@
 
       const loop = async () => {
         const intro = parseIntro();
+        let act = 0;
 
         body.replaceChildren();
 
         while (true) {
+          const { command, steps } = ACTS[act];
+
           await runIntro(intro);
 
+          // Let the profile sit on screen before the next act scrolls it away
           const prompt = createPrompt();
-          await sleep(1500);
-          await typeCommand(prompt, COMMAND);
-          await runPipeline();
+          await sleep(3000);
+          await typeCommand(prompt, command);
+          await runSteps(steps);
 
-          addLine("\u00a0");
+          addLine(" ");
           createPrompt();
           await sleep(6000);
 
           body.replaceChildren();
           await sleep(600);
+
+          act = (act + 1) % ACTS.length;
         }
       };
 
