@@ -185,6 +185,17 @@
       margin-inline: auto;
     }
 
+    .visually-hidden {
+      position: absolute;
+
+      width: 1px;
+      height: 1px;
+
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
     .skip-link {
       position: absolute;
       top: -80px;
@@ -465,8 +476,50 @@
       line-height: 1.9;
     }
 
-    .terminal-body > div {
+    .block > div {
       white-space: pre-wrap;
+    }
+
+    .terminal-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 44px;
+      height: 42px;
+      margin: 0 -14px 0 auto;
+      padding: 0;
+
+      color: var(--muted);
+      background: none;
+      border: 0;
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      transition: color 150ms ease;
+    }
+
+    .terminal-toggle:hover {
+      color: var(--text);
+    }
+
+    .terminal-toggle .icon {
+      width: 14px;
+      height: 14px;
+    }
+
+    .terminal-toggle .icon-play,
+    .terminal.is-paused .terminal-toggle .icon-pause {
+      display: none;
+    }
+
+    .terminal.is-paused .terminal-toggle .icon-play {
+      display: block;
+    }
+
+    .terminal.is-paused .cursor {
+      animation-play-state: paused;
     }
 
     .prompt {
@@ -856,6 +909,12 @@
     <symbol id="i-arrow-up-right" viewBox="0 0 24 24">
       <path d="M7 17 17 7M8 7h9v9" />
     </symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24">
+      <path d="M9 6v12M15 6v12" />
+    </symbol>
+    <symbol id="i-play" viewBox="0 0 24 24">
+      <path d="M8 5.5v13l10-6.5z" />
+    </symbol>
   </svg>
 
   <a class="skip-link" href="#main">Skip to content</a>
@@ -957,32 +1016,54 @@
       </div>
 
 
-      <div class="terminal" aria-hidden="true">
+      <div class="terminal">
+
+        <p class="visually-hidden">
+          Terminal demo: a LoRaWAN uplink is decoded into sensor telemetry,
+          a low battery alert turns out to be caused by the cold, and a
+          temperature compensated threshold is committed and deployed.
+        </p>
 
         <div class="terminal-header">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="terminal-title">diego@home: ~</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span class="dot" aria-hidden="true"></span>
+          <span class="dot" aria-hidden="true"></span>
+          <span class="terminal-title" aria-hidden="true">diego@home: ~</span>
+
+          <button
+            class="terminal-toggle"
+            type="button"
+            aria-label="Pause terminal animation"
+            hidden
+          >
+            <svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause" /></svg>
+            <svg class="icon icon-play" aria-hidden="true"><use href="#i-play" /></svg>
+          </button>
         </div>
 
-        <div class="terminal-body" id="terminal-body">
-          <div><span class="prompt">diego@home</span> <span class="command">:~$ whoami</span></div>
-          <div class="output">Diego Cornejo</div>
-          <div>&nbsp;</div>
-          <div><span class="prompt">diego@home</span> <span class="command">:~$ cat profile.json</span></div>
-          <div class="output">{</div>
-          <div class="output">  <span class="terminal-key">"role"</span>: "SRE / DevOps / Software Architect",</div>
-          <div class="output">  <span class="terminal-key">"focus"</span>: [</div>
-          <div class="output">    "IoT &amp; LoRaWAN", "protocol engineering",</div>
-          <div class="output">    "telecom SaaS", "reliability",</div>
-          <div class="output">    "automation", "AI"</div>
-          <div class="output">  ],</div>
-          <div class="output">  <span class="terminal-key">"cloud"</span>: ["AWS", "Azure", "OCI",</div>
-          <div class="output">            "Vercel", "Cloudflare"]</div>
-          <div class="output">}</div>
-          <div>&nbsp;</div>
-          <div><span class="prompt">diego@home</span> <span class="command">:~$</span> <span class="cursor"></span></div>
+        <div class="terminal-body" id="terminal-body" aria-hidden="true">
+          <div class="block">
+            <div><span class="prompt">diego@home</span><span class="command">:~$ whoami</span></div>
+            <div class="output">Diego Cornejo</div>
+            <div>&nbsp;</div>
+          </div>
+          <div class="block">
+            <div><span class="prompt">diego@home</span><span class="command">:~$ cat profile.json</span></div>
+            <div class="output">{</div>
+            <div class="output">  <span class="terminal-key">"role"</span>: "SRE / DevOps / Software Architect",</div>
+            <div class="output">  <span class="terminal-key">"focus"</span>: [</div>
+            <div class="output">    "IoT &amp; LoRaWAN", "protocol engineering",</div>
+            <div class="output">    "telecom SaaS", "reliability",</div>
+            <div class="output">    "automation", "AI"</div>
+            <div class="output">  ],</div>
+            <div class="output">  <span class="terminal-key">"cloud"</span>: ["AWS", "Azure", "OCI",</div>
+            <div class="output">            "Vercel", "Cloudflare"]</div>
+            <div class="output">}</div>
+            <div>&nbsp;</div>
+          </div>
+          <div class="block">
+            <div><span class="prompt">diego@home</span><span class="command">:~$ </span><span class="cursor"></span></div>
+          </div>
         </div>
 
       </div>
@@ -1374,84 +1455,127 @@
 
   <script>
     (() => {
+      const terminal = document.querySelector(".terminal");
       const body = document.getElementById("terminal-body");
+      const toggle = document.querySelector(".terminal-toggle");
 
       const reducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
       ).matches;
 
-      if (!body || reducedMotion) return;
+      if (!terminal || !body || reducedMotion) return;
 
       const SPINNER = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
 
-      // Each act: a command typed at the prompt, then its steps.
-      // Steps: ["info" | "warn" | "done", text]
-      //        ["line", className, text, pause(ms)]
-      //        ["task", text, result, duration(ms), highlight]
+      // One story told in two acts: a cold sensor raises a battery alert,
+      // then the fix ships and the next uplink proves it.
+      // Each act is a list of commands typed at the prompt with their steps:
+      //   ["info" | "warn" | "done", text]
+      //   ["line", className, text, pause(ms)]
+      //   ["task", text, result, duration(ms), highlight]
       const ACTS = [
-        {
-          command: "mosquitto_sub -t 'v3/+/devices/+/up'",
-          steps: [
-            ["info", "→ Subscribed to The Things Stack uplinks"],
-            ["line", "log-muted", "↑ uplink  eui-70b3d57ed005a1f2  fPort 2", 500],
-            ["line", "log-muted", "  SF7BW125  RSSI -97 dBm  SNR 7.5 dB", 300],
-            ["line", "log-hex", "  01 67 00 E5 02 68 5A 03 02 01 7C", 600],
-            ["task", "Decoding payload (Cayenne LPP)", "3 channels decoded", 900],
-            ["line", "output", '  { "temperature": 22.9, "humidity": 45,', 120],
-            ["line", "output", '    "battery_v": 3.8 }', 500],
-            ["task", "Validating readings", "All readings within thresholds", 700],
-            ["task", "Writing to time series", "1 point written", 800],
-            ["task", "Queuing downlink", "Downlink queued: fPort 10, 0x01", 800, true],
-            ["line", "log-muted", "↑ uplink  eui-70b3d57ed005a1f3  fPort 2", 900],
-            ["line", "log-hex", "  01 67 FF D8 03 02 01 36", 600],
-            ["task", "Decoding payload (Cayenne LPP)", "2 channels decoded", 800],
-            ["line", "output", '  { "temperature": -4.0, "battery_v": 3.1 }', 500],
-            ["warn", "⚠ battery_v below 3.3 V on eui-…a1f3, alert raised"],
-            ["done", "✓ 2 uplinks decoded, 0 dropped"],
-          ],
-        },
-        {
-          command: "git push origin main",
-          steps: [
-            ["info", "→ Pipeline triggered on main"],
-            ["task", "Checking out repository", "Repository checked out", 600],
-            ["task", "Installing dependencies", "Dependencies installed", 1400],
-            ["task", "Linting", "Lint passed, 0 warnings", 800],
-            ["task", "Type checking", "No type errors", 900],
-            ["task", "Running unit tests", "Unit tests passed", 1500, true],
-            ["task", "Running integration tests", "Integration tests passed", 1700, true],
-            ["task", "Security scan", "0 critical, 0 high", 1800],
-            ["task", "Auditing dependencies", "No known vulnerabilities", 900],
-            ["task", "Building Docker image", "Image built", 1600],
-            ["task", "Pushing image to registry", "Pushed to ECR", 1000],
-            ["task", "terraform plan", "Plan: 2 to add, 1 to change, 0 to destroy", 1200],
-            ["task", "terraform apply", "Apply complete", 1400],
-            ["task", "Rolling out (production)", "Rolling update: all pods ready", 2000],
-            ["task", "Running health checks", "GET /health 200 OK", 900],
-            ["task", "Purging CDN cache", "Cloudflare cache purged", 700],
-            ["done", "✓ Deployed to production"],
-          ],
-        },
+        [
+          {
+            command: "mosquitto_sub -t 'v3/+/devices/+/up'",
+            steps: [
+              ["info", "→ Subscribed to The Things Stack uplinks"],
+              ["line", "log-muted", "↑ uplink  eui-70b3d57ed005a1f2  fPort 2", 500],
+              ["line", "log-muted", "  SF7BW125  RSSI -97 dBm  SNR 7.5 dB", 300],
+              ["line", "log-hex", "  01 67 00 E5 02 68 5A 03 02 01 7C", 600],
+              ["task", "Decoding payload (Cayenne LPP)", "3 channels decoded", 900],
+              ["line", "output", '  { "temperature": 22.9, "humidity": 45,', 120],
+              ["line", "output", '    "battery_v": 3.8 }', 500],
+              ["task", "Writing to time series", "1 point written", 800],
+              ["line", "log-muted", "↑ uplink  eui-70b3d57ed005a1f3  fPort 2", 900],
+              ["line", "log-hex", "  01 67 FF D8 03 02 01 36", 600],
+              ["task", "Decoding payload (Cayenne LPP)", "2 channels decoded", 800],
+              ["line", "output", '  { "temperature": -4.0, "battery_v": 3.1 }', 500],
+              ["warn", "⚠ Low battery alert on …a1f3 (3.1 V < 3.3 V)"],
+              ["line", "log-muted", "  cell voltage sags below 0 °C: false alarm", 1200],
+            ],
+          },
+        ],
+        [
+          {
+            command: 'git commit -am "Fix cold battery alert"',
+            steps: [
+              ["line", "log-muted", "[fix/cold-battery 4e1c2a7] Fix cold battery alert", 200],
+              ["line", "log-muted", " 2 files changed", 600],
+            ],
+          },
+          {
+            command: "git push origin fix/cold-battery",
+            steps: [
+              ["info", "→ Pipeline triggered on fix/cold-battery"],
+              ["task", "Running decoder tests", "Decoder tests passed", 1300, true],
+              ["task", "Replaying recent uplinks", "False battery alerts cleared", 1500, true],
+              ["task", "Building Docker image", "Image built", 1400],
+              ["task", "terraform apply", "Apply complete", 1200],
+              ["task", "Rolling out (production)", "Rolling update: all pods ready", 1700],
+              ["task", "Running health checks", "GET /health 200 OK", 800],
+              ["line", "log-muted", "↑ uplink  eui-70b3d57ed005a1f3  fPort 2", 900],
+              ["line", "log-hex", "  01 67 FF D6 03 02 01 35", 600],
+              ["task", "Decoding payload (Cayenne LPP)", "2 channels decoded", 800],
+              ["line", "output", '  { "temperature": -4.2, "battery_v": 3.09 }', 500],
+              ["done", "✓ No false alarm at -4.2 °C"],
+            ],
+          },
+        ],
       ];
 
-      // Timers keep running in a background tab; wait until it is visible again
-      const whenVisible = () =>
-        document.hidden
-          ? new Promise((r) =>
-              document.addEventListener("visibilitychange", r, { once: true })
-            ).then(whenVisible)
-          : Promise.resolve();
+      // Run only while the terminal is on screen, the tab is visible
+      // and the visitor hasn't paused it
+      let inView = false;
+      let paused = false;
+      let resume = null;
+
+      const canRun = () => inView && !paused && !document.hidden;
+
+      const update = () => {
+        if (canRun() && resume) {
+          resume();
+          resume = null;
+        }
+      };
+
+      const gate = () =>
+        canRun() ? Promise.resolve() : new Promise((r) => (resume = r));
 
       const sleep = (ms) =>
-        new Promise((r) => setTimeout(r, ms)).then(whenVisible);
+        new Promise((r) => setTimeout(r, ms)).then(gate);
 
-      // Drop lines from the top once the terminal is full
+      new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting;
+        update();
+      }).observe(terminal);
+
+      document.addEventListener("visibilitychange", update);
+
+      toggle.hidden = false;
+      toggle.addEventListener("click", () => {
+        paused = !paused;
+        terminal.classList.toggle("is-paused", paused);
+        toggle.setAttribute(
+          "aria-label",
+          paused ? "Play terminal animation" : "Pause terminal animation"
+        );
+        update();
+      });
+
+      // Drop whole commands from the top once the terminal is full, so no
+      // half-printed output is left behind. The block being written only
+      // loses its oldest lines when it alone is taller than the screen.
       const trimOverflow = () => {
-        while (
-          body.scrollHeight > body.clientHeight &&
-          body.firstElementChild
-        ) {
-          body.firstElementChild.remove();
+        while (body.scrollHeight > body.clientHeight) {
+          const first = body.firstElementChild;
+          if (!first) return;
+          if (first !== body.lastElementChild) {
+            first.remove();
+          } else if (first.childElementCount > 1) {
+            first.firstElementChild.remove();
+          } else {
+            return;
+          }
         }
       };
 
@@ -1462,20 +1586,24 @@
         return el;
       };
 
+      let block = body.lastElementChild;
+
       const addLine = (...children) => {
         const line = document.createElement("div");
         line.append(...children);
-        body.append(line);
+        block.append(line);
         trimOverflow();
         return line;
       };
 
       const createPrompt = () => {
+        block = document.createElement("div");
+        block.className = "block";
+        body.append(block);
+
         const line = addLine(
           span("prompt", "diego@home"),
-          " ",
-          span("command", ":~$"),
-          " "
+          span("command", ":~$ ")
         );
         const typed = span("command", "");
         line.append(typed, span("cursor", ""));
@@ -1485,9 +1613,9 @@
       const typeCommand = async (prompt, command) => {
         for (const char of command) {
           prompt.typed.textContent += char;
-          await sleep(55 + Math.random() * 60);
+          await sleep(45 + Math.random() * 50);
         }
-        await sleep(400);
+        await sleep(350);
         prompt.line.querySelector(".cursor").remove();
       };
 
@@ -1497,6 +1625,7 @@
         const line = addLine(icon, " ", span("log-running", text + "…"));
 
         const timer = setInterval(() => {
+          if (!canRun()) return;
           frame = (frame + 1) % SPINNER.length;
           icon.textContent = SPINNER[frame];
         }, 80);
@@ -1524,7 +1653,7 @@
             await sleep(pause);
           } else if (type === "warn") {
             addLine(span("log-warn", text));
-            await sleep(500);
+            await sleep(700);
           } else if (type === "done") {
             addLine(" ");
             addLine(span("log-ok", text));
@@ -1535,65 +1664,37 @@
         }
       };
 
-      // Read the static intro (whoami, cat profile.json) from the markup
-      // so it can be replayed: [{ command, output: [nodes] }]
-      const parseIntro = () => {
-        const session = [];
-
-        for (const el of [...body.children]) {
-          if (el.querySelector(".prompt")) {
-            const command = el
-              .querySelector(".command")
-              .textContent.replace(/^:~\$\s*/, "")
-              .trim();
-            session.push({ command, output: [] });
-          } else if (session.length) {
-            session[session.length - 1].output.push(el);
-          }
-        }
-
-        return session.filter(({ command }) => command);
-      };
-
-      const runIntro = async (intro) => {
-        for (const { command, output } of intro) {
-          const prompt = createPrompt();
-          await sleep(700);
-          await typeCommand(prompt, command);
-
-          for (const node of output) {
-            body.append(node.cloneNode(true));
-            trimOverflow();
-            await sleep(45);
-          }
-        }
+      const runCommand = async ({ command, steps }) => {
+        const prompt = createPrompt();
+        await sleep(700);
+        await typeCommand(prompt, command);
+        await runSteps(steps);
+        addLine(" ");
       };
 
       const loop = async () => {
-        const intro = parseIntro();
-        let act = 0;
+        // The profile is already on screen from the markup; keep a copy
+        // to restore it at the start of every loop
+        const intro = [...body.children].slice(0, -1).map((n) => n.cloneNode(true));
 
-        body.replaceChildren();
+        // Replace the static idle prompt with a live one
+        body.lastElementChild.remove();
+
+        await sleep(800);
 
         while (true) {
-          const { command, steps } = ACTS[act];
+          for (const act of ACTS) {
+            for (const command of act) {
+              await runCommand(command);
+            }
+            await sleep(1500);
+          }
 
-          await runIntro(intro);
-
-          // Let the profile sit on screen before the next act scrolls it away
-          const prompt = createPrompt();
-          await sleep(3000);
-          await typeCommand(prompt, command);
-          await runSteps(steps);
-
-          addLine(" ");
           createPrompt();
           await sleep(6000);
 
-          body.replaceChildren();
-          await sleep(600);
-
-          act = (act + 1) % ACTS.length;
+          body.replaceChildren(...intro.map((n) => n.cloneNode(true)));
+          await sleep(2500);
         }
       };
 
