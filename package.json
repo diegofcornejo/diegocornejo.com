@@ -4,13 +4,13 @@
 	"description": "diegocornejo.com",
 	"main": "index.js",
 	"engines": {
-		"node": "22.x"
+		"node": "24.x"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"homepage": "",
 	"dependencies": {
-		"redis": "4.6.10"
+		"redis": "6.2.1"
 	}
 }

@@ -15,7 +15,7 @@ const handler = async (req, res) => {
 		console.error('Error handling redirect:', error);
 		return res.redirect(DEFAULT_URL);
 	} finally {
-		if (client) client.quit();
+		if (client) await client.close();
 	}
 };
 

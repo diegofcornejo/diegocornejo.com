@@ -39,7 +39,7 @@ const handler = async (req, res) => {
 		console.error('Error in handler:', error);
 		return res.status(500).json({ message: 'An error occurred' });
 	} finally {
-		if (client) client.quit();
+		if (client) await client.close();
 	}
 };
 
