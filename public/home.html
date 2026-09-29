@@ -631,6 +631,10 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .area > div {
+      min-width: 0;
+    }
+
     .area h3 {
       margin: 0;
 
@@ -675,6 +679,44 @@
       border-radius: 6px;
 
       font-size: 13px;
+    }
+
+    .snippet {
+      margin: 24px 0 0;
+    }
+
+    .snippet pre {
+      margin: 0;
+      padding: 18px 20px;
+      overflow-x: auto;
+
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.025);
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.75;
+
+      tab-size: 2;
+    }
+
+    .snippet .c {
+      color: var(--muted);
+    }
+
+    .snippet .k {
+      color: var(--accent);
+    }
+
+    .snippet .n {
+      color: var(--accent-secondary);
+    }
+
+    .snippet .s {
+      color: var(--warning);
     }
 
     /* ARTICLES */
@@ -859,6 +901,12 @@
 
         font-size: 12px;
         line-height: 1.85;
+      }
+
+      .snippet pre {
+        padding: 14px 16px;
+
+        font-size: 11.5px;
       }
 
       .article {
@@ -1082,10 +1130,10 @@
           <h2>What I do</h2>
 
           <p class="section-description">
-            I work across the whole system: radios and device protocols,
-            the SaaS platforms that ingest their data, and the cloud,
-            network and security underneath. I'm also an open source
-            enthusiast: I like to build in the open and share what I learn.
+            Most of my work lives between the device and the cloud:
+            getting data off the radio, making sense of it and running
+            the platforms that depend on it. I like to build in the open
+            and share what I learn.
           </p>
 
         </div>
@@ -1104,11 +1152,32 @@
                 communication for IoT platforms.
               </p>
 
+              <figure class="snippet">
+                <pre tabindex="0" aria-label="Code sample: uplink formatter"><code><span class="c">// The Things Stack uplink formatter (Cayenne LPP subset)</span>
+<span class="k">function</span> decodeUplink({ bytes }) {
+  <span class="k">const</span> data = {};
+  <span class="k">const</span> int16 = (i) =&gt; (bytes[i] &lt;&lt; <span class="n">24</span> &gt;&gt; <span class="n">16</span>) | bytes[i + <span class="n">1</span>];
+
+  <span class="k">for</span> (<span class="k">let</span> i = <span class="n">0</span>; i &lt; bytes.length; ) {
+    <span class="k">const</span> channel = bytes[i++];
+    <span class="k">const</span> type = bytes[i++];
+
+    <span class="k">if</span> (type === <span class="n">0x67</span>) { data.temperature = int16(i) / <span class="n">10</span>; i += <span class="n">2</span>; }
+    <span class="k">else if</span> (type === <span class="n">0x68</span>) { data.humidity = bytes[i++] / <span class="n">2</span>; }
+    <span class="k">else if</span> (type === <span class="n">0x02</span>) { data.battery_v = int16(i) / <span class="n">100</span>; i += <span class="n">2</span>; }
+    <span class="k">else return</span> { errors: [<span class="s">`unknown type ${type} on channel ${channel}`</span>] };
+  }
+
+  <span class="k">return</span> { data };
+}
+
+<span class="c">// 01 67 FF D8 03 02 01 36  →  { temperature: -4, battery_v: 3.1 }</span></code></pre>
+              </figure>
+
               <ul class="stack" aria-label="IoT tools and skills">
                 <li>LoRa</li>
                 <li>LoRaWAN</li>
                 <li>The Things Stack</li>
-                <li>IoT</li>
                 <li>Payload Decoding</li>
                 <li>Protocol Analysis</li>
               </ul>
@@ -1117,35 +1186,25 @@
           </article>
 
 
-          <article class="area area-lead">
+          <article class="area">
 
             <h3>SaaS &amp; telecom platforms</h3>
 
             <div>
               <p>
                 Designing and operating SaaS platforms, integrations and
-                systems for telecom and connected device environments.
-                Scalable APIs and distributed systems with pragmatic
-                architectural decisions, from backend services to the
-                web applications on top.
+                systems for telecom and connected device environments:
+                APIs, distributed systems and the web applications on top,
+                including LLM features like RAG and agents inside real
+                products.
               </p>
 
-              <ul class="stack" aria-label="Platform and application stack">
+              <ul class="stack" aria-label="Platform stack">
                 <li>Node.js</li>
-                <li>Express.js</li>
                 <li>TypeScript</li>
-                <li>JavaScript</li>
                 <li>Python</li>
                 <li>React</li>
-                <li>Next.js</li>
-                <li>Astro</li>
-                <li>Svelte</li>
-                <li>Tailwind CSS</li>
                 <li>PostgreSQL</li>
-                <li>MySQL</li>
-                <li>Oracle Database</li>
-                <li>SQL Server</li>
-                <li>MongoDB</li>
                 <li>Redis</li>
               </ul>
             </div>
@@ -1162,48 +1221,18 @@
                 Architecture on AWS, Azure and Oracle Cloud, edge
                 deployments with Vercel and Cloudflare, containers and
                 infrastructure automation. Reliability engineering,
-                monitoring, logging and incident analysis, plus the
-                network and security underneath: TCP/IP, routing, VPNs,
-                reverse tunnels, firewalls, DNS and authentication.
+                monitoring and incident analysis, plus the network and
+                security underneath: routing, VPNs, reverse tunnels,
+                firewalls, DNS and authentication.
               </p>
 
               <ul class="stack" aria-label="Infrastructure stack">
                 <li>AWS</li>
                 <li>Azure</li>
                 <li>Oracle Cloud</li>
-                <li>Vercel</li>
-                <li>Cloudflare</li>
-                <li>Linux</li>
-                <li>Docker</li>
-                <li>Docker Compose</li>
                 <li>Kubernetes</li>
                 <li>Terraform</li>
-                <li>CI/CD</li>
-                <li>NGINX</li>
                 <li>Prometheus</li>
-                <li>Grafana</li>
-              </ul>
-            </div>
-
-          </article>
-
-
-          <article class="area">
-
-            <h3>AI &amp; LLMs</h3>
-
-            <div>
-              <p>
-                Integrating LLMs, RAG, AI agents and natural language
-                interfaces into real software products.
-              </p>
-
-              <ul class="stack" aria-label="AI tools">
-                <li>OpenAI</li>
-                <li>Claude</li>
-                <li>DeepSeek</li>
-                <li>RAG</li>
-                <li>LLMs</li>
               </ul>
             </div>
 
