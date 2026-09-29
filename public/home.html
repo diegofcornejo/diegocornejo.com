@@ -719,6 +719,57 @@
       color: var(--warning);
     }
 
+    .projects {
+      margin-top: 28px;
+    }
+
+    .projects h4 {
+      margin: 0 0 6px;
+
+      color: var(--text);
+
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .projects ul {
+      margin: 0;
+      padding: 0;
+
+      list-style: none;
+    }
+
+    .projects li {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0 12px;
+    }
+
+    .projects a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      min-height: 44px;
+
+      color: var(--accent-secondary);
+      font-weight: 550;
+    }
+
+    .projects a:hover .icon {
+      transform: translate(2px, -2px);
+    }
+
+    .projects .icon {
+      transition: transform 200ms var(--ease-out);
+    }
+
+    .projects span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
     /* ARTICLES */
 
     .articles {
@@ -802,6 +853,62 @@
       margin: 20px 0 30px;
 
       color: var(--muted);
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-email a {
+      display: inline-flex;
+      align-items: center;
+
+      min-height: 44px;
+
+      color: var(--text);
+
+      text-decoration: underline;
+      text-decoration-color: var(--border-hover);
+      text-underline-offset: 4px;
+    }
+
+    .contact-email a:hover {
+      text-decoration-color: var(--accent-secondary);
+    }
+
+    .routes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 28px;
+
+      margin: 28px 0 0;
+      padding: 24px 0 0;
+
+      border-top: 1px solid var(--border);
+
+      list-style: none;
+    }
+
+    .routes a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      min-height: 44px;
+
+      color: var(--muted);
+      font-size: 14px;
+
+      transition: color 150ms ease;
+    }
+
+    .routes a:hover {
+      color: var(--text);
     }
 
     /* FOOTER */
@@ -1132,8 +1239,8 @@
           <p class="section-description">
             Most of my work lives between the device and the cloud:
             getting data off the radio, making sense of it and running
-            the platforms that depend on it. I like to build in the open
-            and share what I learn.
+            the platforms that depend on it. I build in the open and share
+            what I learn.
           </p>
 
         </div>
@@ -1181,6 +1288,26 @@
                 <li>Payload Decoding</li>
                 <li>Protocol Analysis</li>
               </ul>
+
+              <div class="projects">
+                <h4>Open source</h4>
+                <ul>
+                  <li>
+                    <a href="https://lora-packet.vercel.app" target="_blank" rel="noopener noreferrer">
+                      LoRa Packet Decoder
+                      <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+                    </a>
+                    <span>Web app that decodes LoRaWAN packets, including with your own session keys.</span>
+                  </li>
+                  <li>
+                    <a href="https://github.com/diegofcornejo/tektelic-to-tts" target="_blank" rel="noopener noreferrer">
+                      Tektelic to TTS
+                      <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+                    </a>
+                    <span>Migrates LoRaWAN devices from Tektelic to The Things Stack using ABP.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
 
           </article>
@@ -1357,51 +1484,47 @@
           <h2>Get in touch</h2>
 
           <p>
-            Interested in IoT and LoRaWAN, telecom SaaS, cloud
-            infrastructure, DevOps, software architecture or AI, or just
-            want to talk about technology? Feel free to reach out.
+            I take on consulting and freelance work: IoT and LoRaWAN
+            integrations, telecom SaaS platforms and cloud infrastructure.
           </p>
 
           <div class="actions">
 
             <a
               class="button button-primary"
-              href="mailto:info@diegocornejo.com"
+              href="mailto:info@diegocornejo.com?subject=Project%20inquiry"
             >
-              info@diegocornejo.com
+              Start a project
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
             </a>
 
-            <a
-              class="button button-secondary"
-              href="https://blog.diegocornejo.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Blog · RandomTechGuy
-              <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
-            </a>
-
-            <a
-              class="button button-secondary"
-              href="https://github.com/diegofcornejo"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-              <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
-            </a>
-
-            <a
-              class="button button-secondary"
-              href="https://www.linkedin.com/in/diego-cornejo-devops-sre/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-              <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
-            </a>
+            <span class="contact-email">
+              or write to
+              <a href="mailto:info@diegocornejo.com">info@diegocornejo.com</a>
+            </span>
 
           </div>
+
+          <ul class="routes">
+            <li>
+              <a href="https://github.com/diegofcornejo" target="_blank" rel="noopener noreferrer">
+                See my code on GitHub
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://blog.diegocornejo.com" target="_blank" rel="noopener noreferrer">
+                Read the blog (RandomTechGuy)
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/diego-cornejo-devops-sre/" target="_blank" rel="noopener noreferrer">
+                Connect on LinkedIn
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+              </a>
+            </li>
+          </ul>
 
         </div>
 
