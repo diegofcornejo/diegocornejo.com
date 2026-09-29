@@ -30,6 +30,10 @@
 
   <meta name="theme-color" content="#080a0f" />
 
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -38,7 +42,9 @@
     "url": "https://diegocornejo.com",
     "jobTitle": "SRE / DevOps Engineer / Software Architect",
     "sameAs": [
-      "https://blog.diegocornejo.com"
+      "https://blog.diegocornejo.com",
+      "https://github.com/diegofcornejo",
+      "https://www.linkedin.com/in/diego-cornejo-devops-sre/"
     ]
   }
   </script>
@@ -57,6 +63,9 @@
 
       --accent: #7dd3fc;
       --accent-secondary: #a7f3d0;
+
+      --success: #4ade80;
+      --warning: #fbbf24;
 
       --max-width: 1180px;
     }
@@ -141,15 +150,10 @@
     }
 
     .brand-mark {
-      width: 10px;
-      height: 10px;
+      width: 22px;
+      height: 24px;
 
-      border-radius: 50%;
-
-      background: var(--accent-secondary);
-
-      box-shadow:
-        0 0 12px rgba(167, 243, 208, 0.8);
+      fill: currentColor;
     }
 
     .navigation {
@@ -279,6 +283,36 @@
       border-color: var(--border-hover);
     }
 
+    .social {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+
+      margin-top: 28px;
+
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      transition: color 150ms ease;
+    }
+
+    .social a:hover {
+      color: var(--text);
+    }
+
+    .social svg {
+      width: 18px;
+      height: 18px;
+
+      fill: currentColor;
+    }
+
     /* TERMINAL */
 
     .terminal {
@@ -320,6 +354,9 @@
     }
 
     .terminal-body {
+      height: 520px;
+      overflow: hidden;
+
       padding: 26px;
 
       font-family:
@@ -359,6 +396,30 @@
       background: var(--accent-secondary);
 
       animation: blink 1.1s step-end infinite;
+    }
+
+    .log-running {
+      color: var(--text);
+    }
+
+    .log-spinner {
+      color: var(--accent);
+    }
+
+    .log-ok {
+      color: var(--success);
+    }
+
+    .log-warn {
+      color: var(--warning);
+    }
+
+    .log-info {
+      color: var(--accent);
+    }
+
+    .log-muted {
+      color: var(--muted);
     }
 
     @keyframes blink {
@@ -592,6 +653,7 @@
     .footer-links {
       display: flex;
       gap: 20px;
+      flex-wrap: wrap;
     }
 
     /* RESPONSIVE */
@@ -606,6 +668,10 @@
 
       .terminal {
         max-width: 580px;
+      }
+
+      .terminal-body {
+        height: 440px;
       }
 
       .expertise-grid {
@@ -664,14 +730,18 @@
     <nav class="container">
 
       <a href="/" class="brand">
-        <span class="brand-mark"></span>
+        <svg class="brand-mark" viewBox="0 0 268 288" aria-hidden="true">
+          <g transform="translate(0,288) scale(0.1,-0.1)">
+            <path d="M76 2826 c-21 -71 -20 -117 3 -196 38 -130 97 -227 178 -292 73 -59 77 -59 463 -67 220 -4 347 -10 335 -16 -34 -15 -157 -109 -211 -161 -174 -169 -272 -365 -295 -589 -7 -60 -15 -113 -18 -117 -3 -4 -62 -11 -131 -17 -104 -8 -136 -15 -191 -39 -125 -56 -209 -177 -209 -302 l0 -31 28 26 c62 59 129 95 175 95 91 0 169 -59 220 -168 28 -60 30 -74 31 -177 l1 -111 -43 -87 c-23 -47 -48 -92 -55 -99 -7 -7 -38 -47 -69 -88 -31 -41 -86 -107 -122 -145 l-65 -70 29 -3 c20 -2 43 7 77 31 26 18 80 55 118 82 155 108 236 176 379 319 138 139 205 246 256 416 20 64 23 93 21 224 -1 82 -4 153 -7 158 -4 5 -1 134 5 286 10 238 15 285 33 337 36 100 136 219 212 250 21 9 40 14 43 11 3 -2 -6 -47 -20 -98 -15 -51 -29 -109 -32 -128 -3 -19 -12 -62 -20 -95 -26 -113 -38 -400 -25 -619 7 -110 9 -226 6 -258 -15 -131 -85 -276 -191 -397 -31 -35 -189 -155 -283 -216 -9 -5 -48 -33 -86 -60 -39 -28 -91 -64 -116 -80 -25 -17 -49 -36 -53 -42 -4 -7 -12 -13 -17 -13 -18 0 -293 -195 -299 -212 -2 -7 -10 -19 -18 -26 -43 -43 40 -61 92 -20 33 26 273 148 291 148 7 0 25 7 41 15 125 64 501 125 695 112 166 -12 285 -26 380 -47 184 -40 380 -89 432 -109 26 -11 32 -8 75 31 130 119 211 180 366 276 11 6 59 31 107 54 l87 43 1 340 c0 467 -17 691 -69 915 -69 295 -123 440 -214 574 -93 139 -197 231 -315 280 -80 33 -139 44 -336 62 -185 16 -500 10 -1045 -21 -345 -20 -376 -20 -432 8 -64 31 -91 55 -137 121 l-40 57 -16 -55z m1382 -1326 c1 -432 0 -790 -2 -795 -3 -9 -303 -1 -313 8 -1 2 11 29 27 60 42 80 76 171 96 252 15 60 16 81 6 165 -29 231 1 798 51 970 38 130 39 130 107 126 l25 -1 3 -785z m247 760 c121 -10 167 -27 245 -88 169 -133 271 -327 258 -488 -4 -51 -9 -61 -39 -86 -82 -69 -209 -118 -303 -118 -81 0 -201 40 -253 85 -60 51 -63 72 -63 409 l0 296 23 0 c12 0 72 -5 132 -10z m525 -852 c1 -57 5 -161 9 -233 5 -71 7 -131 6 -133 -2 -2 -34 10 -72 26 -97 42 -162 55 -282 55 -106 0 -171 -14 -273 -57 -21 -9 -42 -16 -48 -16 -6 0 -10 77 -10 224 l0 225 43 -24 c23 -13 74 -36 112 -51 130 -51 316 -34 416 36 15 11 34 20 42 20 8 0 20 7 27 15 24 29 30 14 30 -87z m-238 -374 c71 -16 167 -62 221 -107 38 -30 46 -75 47 -255 l0 -143 -37 7 c-21 3 -63 14 -93 24 -91 29 -315 78 -455 100 -33 6 -75 12 -92 15 l-33 6 0 114 0 113 38 29 c46 35 96 59 187 89 84 28 123 29 217 8z"/>
+          </g>
+        </svg>
         Diego Cornejo
       </a>
 
       <div class="navigation">
         <a href="#about">About</a>
         <a href="#writing">Writing</a>
-        <a href="https://blog.diegocornejo.com">Blog</a>
+        <a href="https://blog.diegocornejo.com" target="_blank" rel="noopener noreferrer">Blog</a>
         <a href="#contact">Contact</a>
       </div>
 
@@ -708,6 +778,8 @@
           <a
             class="button button-primary"
             href="https://blog.diegocornejo.com"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Read my blog →
           </a>
@@ -728,6 +800,32 @@
 
         </div>
 
+        <div class="social">
+
+          <a
+            href="https://github.com/diegofcornejo"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+            diegofcornejo
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/diego-cornejo-devops-sre/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            LinkedIn
+          </a>
+
+        </div>
+
       </div>
 
 
@@ -739,54 +837,36 @@
           <span class="dot"></span>
         </div>
 
-        <div class="terminal-body">
+        <div class="terminal-body" id="terminal-body">
 
           <div>
             <span class="prompt">diego@home</span>
             <span class="command">:~$ whoami</span>
           </div>
 
-          <div class="output">
-            Diego Cornejo
-          </div>
+          <div class="output">Diego Cornejo</div>
 
-          <br>
+          <div>&nbsp;</div>
 
           <div>
             <span class="prompt">diego@home</span>
             <span class="command">:~$ cat profile.json</span>
           </div>
 
-          <div class="output">
-            {<br>
+          <div class="output">{</div>
+          <div class="output">&nbsp;&nbsp;<span class="terminal-key">"role"</span>: "SRE / Software Engineer",</div>
+          <div class="output">&nbsp;&nbsp;<span class="terminal-key">"cloud"</span>: ["AWS", "Azure", "OCI", "Vercel", "Cloudflare"],</div>
+          <div class="output">&nbsp;&nbsp;<span class="terminal-key">"focus"</span>: [</div>
+          <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;"reliability",</div>
+          <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;"architecture",</div>
+          <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;"automation",</div>
+          <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;"IoT &amp; LoRaWAN",</div>
+          <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;"protocol engineering",</div>
+          <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;"AI"</div>
+          <div class="output">&nbsp;&nbsp;]</div>
+          <div class="output">}</div>
 
-            &nbsp;&nbsp;<span class="terminal-key">"role"</span>:
-            "SRE / Software Engineer",<br>
-
-            &nbsp;&nbsp;<span class="terminal-key">"cloud"</span>:
-            "AWS",<br>
-
-            &nbsp;&nbsp;<span class="terminal-key">"focus"</span>:
-            [<br>
-
-            &nbsp;&nbsp;&nbsp;&nbsp;"reliability",<br>
-
-            &nbsp;&nbsp;&nbsp;&nbsp;"architecture",<br>
-
-            &nbsp;&nbsp;&nbsp;&nbsp;"automation",<br>
-
-            &nbsp;&nbsp;&nbsp;&nbsp;"IoT & LoRaWAN",<br>
-
-            &nbsp;&nbsp;&nbsp;&nbsp;"protocol engineering",<br>
-
-            &nbsp;&nbsp;&nbsp;&nbsp;"AI"<br>
-
-            &nbsp;&nbsp;]<br>
-
-            }
-          </div>
-
-          <br>
+          <div>&nbsp;</div>
 
           <div>
             <span class="prompt">diego@home</span>
@@ -822,6 +902,8 @@
             I work across the stack, from Linux, networking and cloud
             infrastructure to APIs, SaaS platforms, IoT systems,
             device protocols and modern AI-enabled applications.
+            I'm also an open-source enthusiast: I like to build in
+            the open and share what I learn.
           </p>
 
         </div>
@@ -836,7 +918,8 @@
             <h3>Cloud & Infrastructure</h3>
 
             <p>
-              AWS architecture, networking, containers,
+              Architecture on AWS, Azure and Oracle Cloud, edge and
+              deployments with Vercel and Cloudflare, containers,
               infrastructure automation and production operations.
             </p>
 
@@ -962,29 +1045,63 @@
 
           <span class="technology">AWS</span>
 
+          <span class="technology">Azure</span>
+
+          <span class="technology">Oracle Cloud</span>
+
+          <span class="technology">Vercel</span>
+
+          <span class="technology">Cloudflare</span>
+
           <span class="technology">Linux</span>
 
           <span class="technology">Docker</span>
+
+          <span class="technology">Docker Compose</span>
 
           <span class="technology">Kubernetes</span>
 
           <span class="technology">Terraform</span>
 
-          <span class="technology">Node.js</span>
-
-          <span class="technology">TypeScript</span>
-
-          <span class="technology">JavaScript</span>
-
-          <span class="technology">MySQL</span>
-
-          <span class="technology">Redis</span>
+          <span class="technology">CI/CD</span>
 
           <span class="technology">NGINX</span>
 
           <span class="technology">Prometheus</span>
 
           <span class="technology">Grafana</span>
+
+          <span class="technology">JavaScript</span>
+
+          <span class="technology">TypeScript</span>
+
+          <span class="technology">Python</span>
+
+          <span class="technology">Node.js</span>
+
+          <span class="technology">Express.js</span>
+
+          <span class="technology">React</span>
+
+          <span class="technology">Next.js</span>
+
+          <span class="technology">Astro</span>
+
+          <span class="technology">Svelte</span>
+
+          <span class="technology">Tailwind CSS</span>
+
+          <span class="technology">PostgreSQL</span>
+
+          <span class="technology">MySQL</span>
+
+          <span class="technology">Oracle Database</span>
+
+          <span class="technology">SQL Server</span>
+
+          <span class="technology">MongoDB</span>
+
+          <span class="technology">Redis</span>
 
           <span class="technology">LoRa</span>
 
@@ -1000,9 +1117,15 @@
 
           <span class="technology">OpenAI</span>
 
+          <span class="technology">Claude</span>
+
+          <span class="technology">DeepSeek</span>
+
           <span class="technology">RAG</span>
 
           <span class="technology">LLMs</span>
+
+          <span class="technology">Open Source</span>
 
         </div>
 
@@ -1040,6 +1163,8 @@
           <a
             class="article"
             href="https://blog.diegocornejo.com"
+            target="_blank"
+            rel="noopener noreferrer"
           >
 
             <div class="article-meta">
@@ -1061,6 +1186,8 @@
           <a
             class="article"
             href="https://blog.diegocornejo.com"
+            target="_blank"
+            rel="noopener noreferrer"
           >
 
             <div class="article-meta">
@@ -1082,6 +1209,8 @@
           <a
             class="article"
             href="https://blog.diegocornejo.com"
+            target="_blank"
+            rel="noopener noreferrer"
           >
 
             <div class="article-meta">
@@ -1107,6 +1236,8 @@
           <a
             class="button button-secondary"
             href="https://blog.diegocornejo.com"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             View all articles →
           </a>
@@ -1155,8 +1286,28 @@
             <a
               class="button button-secondary"
               href="https://blog.diegocornejo.com"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               RamdomTechGuy ↗
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="https://github.com/diegofcornejo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub ↗
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="https://www.linkedin.com/in/diego-cornejo-devops-sre/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn ↗
             </a>
 
           </div>
@@ -1180,8 +1331,16 @@
 
       <div class="footer-links">
 
-        <a href="https://blog.diegocornejo.com">
+        <a href="https://blog.diegocornejo.com" target="_blank" rel="noopener noreferrer">
           Blog
+        </a>
+
+        <a href="https://github.com/diegofcornejo" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+
+        <a href="https://www.linkedin.com/in/diego-cornejo-devops-sre/" target="_blank" rel="noopener noreferrer">
+          LinkedIn
         </a>
 
         <span>
@@ -1198,6 +1357,190 @@
   <script>
     document.getElementById("year").textContent =
       new Date().getFullYear();
+  </script>
+
+  <script>
+    (() => {
+      const body = document.getElementById("terminal-body");
+
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (!body || reducedMotion) return;
+
+      const COMMAND = "git push origin main";
+      const SPINNER = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
+
+      // [type, text, result, duration(ms), highlight]
+      const PIPELINE = [
+        ["info", "→ Pipeline #1284 triggered on main (a3f9c21)"],
+        ["task", "Checking out repository", "Repository checked out", 600],
+        ["task", "Installing dependencies", "412 packages installed in 8.2s", 1400],
+        ["task", "Linting", "Lint passed, 0 warnings", 800],
+        ["task", "Type checking", "No type errors", 900],
+        ["task", "Running unit tests", "Tests passed 10/10", 1500, true],
+        ["task", "Running integration tests", "Integration tests passed 24/24", 1700, true],
+        ["task", "Security check in progress", "Security scan: 0 critical, 0 high", 1800],
+        ["task", "Auditing dependencies", "No known vulnerabilities", 900],
+        ["warn", "⚠ Image size increased by 2.1 MB"],
+        ["task", "Building Docker image", "Image built api:1.4.2 (84 MB)", 1600],
+        ["task", "Pushing image to registry", "Pushed to ECR", 1000],
+        ["task", "terraform plan", "Plan: 2 to add, 1 to change, 0 to destroy", 1200],
+        ["task", "terraform apply", "Apply complete", 1400],
+        ["task", "Deployment started (production)", "Rolling update: 3/3 pods ready", 2000],
+        ["task", "Running health checks", "GET /health 200 OK (38ms)", 900],
+        ["task", "Purging CDN cache", "Cloudflare cache purged", 700],
+        ["task", "Notifying #deploys", "Slack notification sent", 500],
+        ["done", "✓ Deployed to production in 2m 14s"],
+      ];
+
+      const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+      // Drop lines from the top once the terminal is full
+      const trimOverflow = () => {
+        while (
+          body.scrollHeight > body.clientHeight &&
+          body.firstElementChild
+        ) {
+          body.firstElementChild.remove();
+        }
+      };
+
+      const span = (className, text) => {
+        const el = document.createElement("span");
+        el.className = className;
+        el.textContent = text;
+        return el;
+      };
+
+      const addLine = (...children) => {
+        const line = document.createElement("div");
+        line.append(...children);
+        body.append(line);
+        trimOverflow();
+        return line;
+      };
+
+      const createPrompt = () => {
+        const line = addLine(
+          span("prompt", "diego@home"),
+          " ",
+          span("command", ":~$"),
+          " "
+        );
+        const typed = span("command", "");
+        line.append(typed, span("cursor", ""));
+        return { line, typed };
+      };
+
+      const typeCommand = async (prompt, command) => {
+        for (const char of command) {
+          prompt.typed.textContent += char;
+          await sleep(55 + Math.random() * 60);
+        }
+        await sleep(400);
+        prompt.line.querySelector(".cursor").remove();
+      };
+
+      const runTask = async ([, text, result, duration, highlight]) => {
+        let frame = 0;
+        const icon = span("log-spinner", SPINNER[0]);
+        const line = addLine(icon, " ", span("log-running", text + "…"));
+
+        const timer = setInterval(() => {
+          frame = (frame + 1) % SPINNER.length;
+          icon.textContent = SPINNER[frame];
+        }, 80);
+
+        await sleep(duration);
+        clearInterval(timer);
+
+        line.replaceChildren(
+          span("log-ok", "✓"),
+          " ",
+          span(highlight ? "log-ok" : "log-muted", result)
+        );
+        trimOverflow();
+      };
+
+      const runPipeline = async () => {
+        for (const step of PIPELINE) {
+          const [type, text] = step;
+
+          if (type === "task") {
+            await runTask(step);
+          } else if (type === "warn") {
+            addLine(span("log-warn", text));
+            await sleep(500);
+          } else if (type === "done") {
+            addLine("\u00a0");
+            addLine(span("log-ok", text));
+          } else {
+            addLine(span("log-info", text));
+            await sleep(600);
+          }
+        }
+      };
+
+      // Read the static intro (whoami, cat profile.json) from the markup
+      // so it can be replayed: [{ command, output: [nodes] }]
+      const parseIntro = () => {
+        const session = [];
+
+        for (const el of [...body.children]) {
+          if (el.querySelector(".prompt")) {
+            const command = el
+              .querySelector(".command")
+              .textContent.replace(/^:~\$\s*/, "")
+              .trim();
+            session.push({ command, output: [] });
+          } else if (session.length) {
+            session[session.length - 1].output.push(el);
+          }
+        }
+
+        return session.filter(({ command }) => command);
+      };
+
+      const runIntro = async (intro) => {
+        for (const { command, output } of intro) {
+          const prompt = createPrompt();
+          await sleep(700);
+          await typeCommand(prompt, command);
+
+          for (const node of output) {
+            body.append(node.cloneNode(true));
+            trimOverflow();
+            await sleep(45);
+          }
+        }
+      };
+
+      const loop = async () => {
+        const intro = parseIntro();
+
+        body.replaceChildren();
+
+        while (true) {
+          await runIntro(intro);
+
+          const prompt = createPrompt();
+          await sleep(1500);
+          await typeCommand(prompt, COMMAND);
+          await runPipeline();
+
+          addLine("\u00a0");
+          createPrompt();
+          await sleep(6000);
+
+          body.replaceChildren();
+          await sleep(600);
+        }
+      };
+
+      loop();
+    })();
   </script>
 
 </body>
