@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Diego Cornejo — SRE, DevOps & Software Architect</title>
+
+  <meta
+    name="description"
+    content="Diego Cornejo — SRE, DevOps Engineer, Software Architect and Full-Stack Developer. Building reliable infrastructure, scalable SaaS platforms, IoT solutions and software."
+  />
+
+  <link rel="canonical" href="https://diegocornejo.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://diegocornejo.com/" />
+  <meta
+    property="og:title"
+    content="Diego Cornejo — SRE, DevOps & Software Architect"
+  />
+  <meta
+    property="og:description"
+    content="Building reliable infrastructure, scalable SaaS platforms, IoT solutions and software that solves real-world problems."
+  />
+
+  <meta name="theme-color" content="#080a0f" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Diego Cornejo",
+    "url": "https://diegocornejo.com",
+    "jobTitle": "SRE / DevOps Engineer / Software Architect",
+    "sameAs": [
+      "https://blog.diegocornejo.com"
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --background: #080a0f;
+      --surface: rgba(255, 255, 255, 0.035);
+      --surface-hover: rgba(255, 255, 255, 0.065);
+
+      --border: rgba(255, 255, 255, 0.10);
+      --border-hover: rgba(255, 255, 255, 0.20);
+
+      --text: #f4f4f5;
+      --muted: #969aa7;
+
+      --accent: #7dd3fc;
+      --accent-secondary: #a7f3d0;
+
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at 70% 20%,
+          rgba(56, 189, 248, 0.10),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 20% 80%,
+          rgba(52, 211, 153, 0.05),
+          transparent 25%
+        ),
+        var(--background);
+
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin-inline: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+
+      background: rgba(8, 10, 15, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+    }
+
+    nav {
+      min-height: 72px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 10px;
+      height: 10px;
+
+      border-radius: 50%;
+
+      background: var(--accent-secondary);
+
+      box-shadow:
+        0 0 12px rgba(167, 243, 208, 0.8);
+    }
+
+    .navigation {
+      display: flex;
+      gap: 30px;
+
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .navigation a {
+      transition: color 150ms ease;
+    }
+
+    .navigation a:hover {
+      color: var(--text);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: calc(100vh - 72px);
+
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 80px;
+
+      align-items: center;
+
+      padding: 100px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      margin-bottom: 24px;
+
+      color: var(--accent-secondary);
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+      font-size: 13px;
+    }
+
+    h1 {
+      max-width: 850px;
+
+      margin: 0;
+
+      font-size: clamp(52px, 7vw, 88px);
+      font-weight: 650;
+
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+    }
+
+    .gradient {
+      color: transparent;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--accent),
+          var(--accent-secondary)
+        );
+
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero-description {
+      max-width: 670px;
+
+      margin: 32px 0;
+
+      color: var(--muted);
+
+      font-size: clamp(18px, 2vw, 21px);
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      padding: 12px 18px;
+
+      border-radius: 8px;
+      border: 1px solid var(--border);
+
+      font-size: 14px;
+      font-weight: 600;
+
+      transition:
+        background 150ms ease,
+        border-color 150ms ease,
+        transform 150ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      color: #07100d;
+
+      background: var(--accent-secondary);
+      border-color: var(--accent-secondary);
+    }
+
+    .button-secondary:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-hover);
+    }
+
+    /* TERMINAL */
+
+    .terminal {
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.015)
+        );
+
+      box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.35);
+    }
+
+    .terminal-header {
+      height: 42px;
+
+      display: flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 0 16px;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+
+      border-radius: 50%;
+
+      background: #3f424c;
+    }
+
+    .terminal-body {
+      padding: 26px;
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .prompt {
+      color: var(--accent-secondary);
+    }
+
+    .command {
+      color: var(--text);
+    }
+
+    .output {
+      color: var(--muted);
+    }
+
+    .terminal-key {
+      color: var(--accent);
+    }
+
+    .cursor {
+      display: inline-block;
+
+      width: 7px;
+      height: 15px;
+
+      vertical-align: -2px;
+
+      background: var(--accent-secondary);
+
+      animation: blink 1.1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 110px 0;
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .section-label {
+      margin-bottom: 10px;
+
+      color: var(--accent);
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    h2 {
+      margin: 0;
+
+      font-size: clamp(32px, 5vw, 48px);
+
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .section-description {
+      max-width: 700px;
+
+      margin-top: 16px;
+
+      color: var(--muted);
+    }
+
+    /* EXPERTISE */
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+
+    .expertise {
+      min-height: 240px;
+
+      padding: 30px;
+
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+
+      transition: background 150ms ease;
+    }
+
+    .expertise:hover {
+      background: var(--surface);
+    }
+
+    .expertise-number {
+      color: #565a65;
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
+      font-size: 12px;
+    }
+
+    .expertise h3 {
+      margin: 50px 0 12px;
+
+      font-size: 20px;
+      letter-spacing: -0.025em;
+    }
+
+    .expertise p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    /* STACK */
+
+    .stack {
+      margin-top: 50px;
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .technology {
+      padding: 7px 12px;
+
+      color: var(--muted);
+
+      border: 1px solid var(--border);
+      border-radius: 6px;
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
+      font-size: 12px;
+    }
+
+    /* ARTICLES */
+
+    .articles {
+      display: grid;
+      gap: 0;
+
+      border-top: 1px solid var(--border);
+    }
+
+    .article {
+      display: grid;
+      grid-template-columns: 150px 1fr auto;
+      gap: 30px;
+
+      align-items: center;
+
+      padding: 28px 4px;
+
+      border-bottom: 1px solid var(--border);
+
+      transition:
+        padding 150ms ease,
+        background 150ms ease;
+    }
+
+    .article:hover {
+      padding-left: 14px;
+      padding-right: 14px;
+
+      background: var(--surface);
+    }
+
+    .article-meta {
+      color: var(--muted);
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
+      font-size: 12px;
+    }
+
+    .article-title {
+      font-weight: 550;
+      letter-spacing: -0.015em;
+    }
+
+    .arrow {
+      color: var(--muted);
+
+      font-size: 20px;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      padding-bottom: 140px;
+    }
+
+    .contact-box {
+      padding: 60px;
+
+      border: 1px solid var(--border);
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(125, 211, 252, 0.05),
+          rgba(167, 243, 208, 0.025)
+        );
+    }
+
+    .contact-box h2 {
+      max-width: 650px;
+    }
+
+    .contact-box p {
+      max-width: 650px;
+
+      margin: 20px 0 30px;
+
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 28px 0;
+
+      border-top: 1px solid var(--border);
+
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 60px;
+
+        padding: 80px 0;
+      }
+
+      .terminal {
+        max-width: 580px;
+      }
+
+      .expertise-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      .navigation a:not(:last-child) {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 65px;
+      }
+
+      h1 {
+        font-size: clamp(48px, 15vw, 70px);
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .expertise-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .article {
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+      }
+
+      .article-meta {
+        grid-column: 1 / -1;
+      }
+
+      .contact-box {
+        padding: 34px 26px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="container">
+
+      <a href="/" class="brand">
+        <span class="brand-mark"></span>
+        Diego Cornejo
+      </a>
+
+      <div class="navigation">
+        <a href="#about">About</a>
+        <a href="#writing">Writing</a>
+        <a href="https://blog.diegocornejo.com">Blog</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+    </nav>
+  </header>
+
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero container">
+
+      <div>
+
+        <div class="eyebrow">
+          <span>~/</span>
+          SRE · DevOps · Software Architecture · IoT
+        </div>
+
+        <h1>
+          I build
+          <span class="gradient">reliable systems.</span>
+        </h1>
+
+        <p class="hero-description">
+          I'm Diego Cornejo, a software engineer focused on
+          infrastructure, distributed systems, cloud architecture,
+          IoT, protocol engineering and scalable software products.
+        </p>
+
+        <div class="actions">
+
+          <a
+            class="button button-primary"
+            href="https://blog.diegocornejo.com"
+          >
+            Read my blog →
+          </a>
+
+          <a
+            class="button button-secondary"
+            href="#about"
+          >
+            What I do
+          </a>
+
+          <a
+            class="button button-secondary"
+            href="#contact"
+          >
+            Get in touch
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="terminal">
+
+        <div class="terminal-header">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+
+        <div class="terminal-body">
+
+          <div>
+            <span class="prompt">diego@home</span>
+            <span class="command">:~$ whoami</span>
+          </div>
+
+          <div class="output">
+            Diego Cornejo
+          </div>
+
+          <br>
+
+          <div>
+            <span class="prompt">diego@home</span>
+            <span class="command">:~$ cat profile.json</span>
+          </div>
+
+          <div class="output">
+            {<br>
+
+            &nbsp;&nbsp;<span class="terminal-key">"role"</span>:
+            "SRE / Software Engineer",<br>
+
+            &nbsp;&nbsp;<span class="terminal-key">"cloud"</span>:
+            "AWS",<br>
+
+            &nbsp;&nbsp;<span class="terminal-key">"focus"</span>:
+            [<br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;"reliability",<br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;"architecture",<br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;"automation",<br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;"IoT & LoRaWAN",<br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;"protocol engineering",<br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;"AI"<br>
+
+            &nbsp;&nbsp;]<br>
+
+            }
+          </div>
+
+          <br>
+
+          <div>
+            <span class="prompt">diego@home</span>
+            <span class="command">:~$</span>
+            <span class="cursor"></span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-label">
+            01 / What I do
+          </div>
+
+          <h2>
+            From infrastructure<br>
+            to product.
+          </h2>
+
+          <p class="section-description">
+            I work across the stack, from Linux, networking and cloud
+            infrastructure to APIs, SaaS platforms, IoT systems,
+            device protocols and modern AI-enabled applications.
+          </p>
+
+        </div>
+
+
+        <div class="expertise-grid">
+
+          <article class="expertise">
+
+            <span class="expertise-number">01</span>
+
+            <h3>Cloud & Infrastructure</h3>
+
+            <p>
+              AWS architecture, networking, containers,
+              infrastructure automation and production operations.
+            </p>
+
+          </article>
+
+
+          <article class="expertise">
+
+            <span class="expertise-number">02</span>
+
+            <h3>SRE & Observability</h3>
+
+            <p>
+              Reliability engineering, monitoring, logging,
+              incident analysis and operational automation.
+            </p>
+
+          </article>
+
+
+          <article class="expertise">
+
+            <span class="expertise-number">03</span>
+
+            <h3>Software Architecture</h3>
+
+            <p>
+              Designing scalable SaaS platforms, APIs and distributed
+              systems with pragmatic architectural decisions.
+            </p>
+
+          </article>
+
+
+          <article class="expertise">
+
+            <span class="expertise-number">04</span>
+
+            <h3>Full-Stack Development</h3>
+
+            <p>
+              Building web applications, backend services,
+              integrations and production-ready software.
+            </p>
+
+          </article>
+
+
+          <article class="expertise">
+
+            <span class="expertise-number">05</span>
+
+            <h3>Security</h3>
+
+            <p>
+              Secure infrastructure, application security,
+              authentication and practical security engineering.
+            </p>
+
+          </article>
+
+
+          <article class="expertise">
+
+            <span class="expertise-number">06</span>
+
+            <h3>IoT & Protocol Engineering</h3>
+
+            <p>
+              LoRa and LoRaWAN integrations, binary payload decoding,
+              protocol analysis, telemetry processing and device
+              communication for IoT platforms.
+            </p>
+
+          </article>
+
+
+          <article class="expertise">
+
+            <span class="expertise-number">07</span>
+
+            <h3>AI & LLMs</h3>
+
+            <p>
+              Integrating LLMs, RAG, AI agents and natural-language
+              interfaces into real software products.
+            </p>
+
+          </article>
+
+
+          <article class="expertise">
+
+            <span class="expertise-number">08</span>
+
+            <h3>Networking</h3>
+
+            <p>
+              TCP/IP networking, routing, VPNs, reverse tunnels,
+              firewalls, DNS and secure connectivity between systems.
+            </p>
+
+          </article>
+
+
+          <article class="expertise">
+
+            <span class="expertise-number">09</span>
+
+            <h3>SaaS & Telecom</h3>
+
+            <p>
+              Designing and operating SaaS platforms, integrations
+              and systems for telecom and connected-device environments.
+            </p>
+
+          </article>
+
+        </div>
+
+
+        <div class="stack">
+
+          <span class="technology">AWS</span>
+
+          <span class="technology">Linux</span>
+
+          <span class="technology">Docker</span>
+
+          <span class="technology">Kubernetes</span>
+
+          <span class="technology">Terraform</span>
+
+          <span class="technology">Node.js</span>
+
+          <span class="technology">TypeScript</span>
+
+          <span class="technology">JavaScript</span>
+
+          <span class="technology">MySQL</span>
+
+          <span class="technology">Redis</span>
+
+          <span class="technology">NGINX</span>
+
+          <span class="technology">Prometheus</span>
+
+          <span class="technology">Grafana</span>
+
+          <span class="technology">LoRa</span>
+
+          <span class="technology">LoRaWAN</span>
+
+          <span class="technology">The Things Stack</span>
+
+          <span class="technology">IoT</span>
+
+          <span class="technology">Payload Decoding</span>
+
+          <span class="technology">Protocol Analysis</span>
+
+          <span class="technology">OpenAI</span>
+
+          <span class="technology">RAG</span>
+
+          <span class="technology">LLMs</span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- WRITING -->
+
+    <section id="writing">
+
+      <div class="container">
+
+        <div class="section-header">
+
+          <div class="section-label">
+            02 / Writing
+          </div>
+
+          <h2>
+            Notes from the field.
+          </h2>
+
+          <p class="section-description">
+            Things I learn, break, debug and occasionally
+            document so I don't have to figure them out twice.
+          </p>
+
+        </div>
+
+
+        <div class="articles">
+
+          <a
+            class="article"
+            href="https://blog.diegocornejo.com"
+          >
+
+            <div class="article-meta">
+              SECURITY
+            </div>
+
+            <div class="article-title">
+              Deepsec / Vercel Security Harness:
+              practical guide & troubleshooting
+            </div>
+
+            <div class="arrow">
+              ↗
+            </div>
+
+          </a>
+
+
+          <a
+            class="article"
+            href="https://blog.diegocornejo.com"
+          >
+
+            <div class="article-meta">
+              DEVOPS
+            </div>
+
+            <div class="article-title">
+              Setting Up a Monitoring Stack
+              with Docker Compose
+            </div>
+
+            <div class="arrow">
+              ↗
+            </div>
+
+          </a>
+
+
+          <a
+            class="article"
+            href="https://blog.diegocornejo.com"
+          >
+
+            <div class="article-meta">
+              AWS
+            </div>
+
+            <div class="article-title">
+              Export AWS SSM Parameter Store
+              as Environment Variables with Bash
+            </div>
+
+            <div class="arrow">
+              ↗
+            </div>
+
+          </a>
+
+        </div>
+
+
+        <div style="margin-top: 28px;">
+
+          <a
+            class="button button-secondary"
+            href="https://blog.diegocornejo.com"
+          >
+            View all articles →
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section
+      id="contact"
+      class="contact"
+    >
+
+      <div class="container">
+
+        <div class="contact-box">
+
+          <div class="section-label">
+            03 / Contact
+          </div>
+
+          <h2>
+            Let's build something reliable.
+          </h2>
+
+          <p>
+            Interested in software architecture, cloud infrastructure,
+            DevOps, SaaS, IoT, LoRaWAN, AI or just want to talk about
+            technology? Feel free to reach out.
+          </p>
+
+          <div class="actions">
+
+            <a
+              class="button button-primary"
+              href="mailto:info@diegocornejo.com"
+            >
+              info@diegocornejo.com
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="https://blog.diegocornejo.com"
+            >
+              RamdomTechGuy ↗
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <div class="container footer-content">
+
+      <span>
+        © <span id="year"></span> Diego Cornejo
+      </span>
+
+      <div class="footer-links">
+
+        <a href="https://blog.diegocornejo.com">
+          Blog
+        </a>
+
+        <span>
+          RamdomTechGuy
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>

@@ -1,6 +1,16 @@
 {
 	"rewrites": [
 		{
+			"source": "/",
+			"has": [{ "type": "host", "value": "diegocornejo.com" }],
+			"destination": "/home.html"
+		},
+		{
+			"source": "/",
+			"has": [{ "type": "host", "value": "www.diegocornejo.com" }],
+			"destination": "/home.html"
+		},
+		{
 			"source": "/dani",
 			"destination": "/dani.html"
 		},
