@@ -84,14 +84,6 @@
       font-display: swap;
     }
 
-    @font-face {
-      font-family: "IBM Plex Mono";
-      src: url("/fonts/plex-mono-500.woff2") format("woff2");
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
-
     :root {
       --background: #080a0f;
       --surface: rgba(255, 255, 255, 0.035);
@@ -245,6 +237,7 @@
       gap: 10px;
 
       min-height: 44px;
+      min-width: 44px;
 
       font-weight: 600;
       letter-spacing: -0.015em;
@@ -259,7 +252,9 @@
 
     .navigation {
       display: flex;
-      gap: 28px;
+      gap: 12px;
+
+      margin-right: -10px;
 
       color: var(--muted);
       font-size: 14px;
@@ -270,6 +265,7 @@
       align-items: center;
 
       min-height: 44px;
+      padding: 0 10px;
 
       transition: color 150ms ease;
     }
@@ -295,7 +291,7 @@
 
       align-items: center;
 
-      padding: 96px 0 112px;
+      padding: 88px 0 96px;
     }
 
     h1 {
@@ -436,7 +432,7 @@
     }
 
     .terminal-header {
-      height: 42px;
+      height: 44px;
 
       display: flex;
       align-items: center;
@@ -486,7 +482,7 @@
       justify-content: center;
 
       width: 44px;
-      height: 42px;
+      height: 44px;
       margin: 0 -14px 0 auto;
       padding: 0;
 
@@ -588,11 +584,11 @@
     /* SECTIONS */
 
     section {
-      padding: 112px 0;
+      padding: 88px 0;
     }
 
     .section-header {
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
 
     h2 {
@@ -835,7 +831,7 @@
     /* CONTACT */
 
     .contact {
-      padding-bottom: 140px;
+      padding-bottom: 112px;
     }
 
     .contact-box {
@@ -931,15 +927,20 @@
 
     .footer-links {
       display: flex;
-      gap: 0 20px;
+      gap: 0 4px;
       flex-wrap: wrap;
+
+      margin-right: -10px;
     }
 
     .footer-links a {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
 
+      min-width: 44px;
       min-height: 44px;
+      padding: 0 10px;
 
       transition: color 150ms ease;
     }
@@ -980,7 +981,7 @@
       }
 
       .navigation {
-        gap: 18px;
+        gap: 2px;
       }
 
       .brand-name {
@@ -999,7 +1000,7 @@
       }
 
       section {
-        padding: 80px 0;
+        padding: 64px 0;
       }
 
       .terminal-body {
@@ -1034,6 +1035,10 @@
       .footer-content {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      .footer-links {
+        margin: 0 0 0 -10px;
       }
     }
 
