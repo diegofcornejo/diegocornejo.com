@@ -97,9 +97,14 @@
 
       --accent: #7dd3fc;
       --accent-secondary: #a7f3d0;
+      --accent-secondary-hover: #c2f7df;
+      --on-accent: #07100d;
 
       --success: #4ade80;
       --warning: #fbbf24;
+
+      --scrollbar: #2a2e38;
+      --decoration: #3f424c;
 
       --font-sans:
         "IBM Plex Sans",
@@ -129,7 +134,7 @@
       color-scheme: dark;
       scroll-behavior: smooth;
       scroll-padding-top: 88px;
-      scrollbar-color: #2a2e38 var(--background);
+      scrollbar-color: var(--scrollbar) var(--background);
     }
 
     body {
@@ -196,7 +201,7 @@
 
       padding: 10px 14px;
 
-      color: #07100d;
+      color: var(--on-accent);
       background: var(--accent-secondary);
       border-radius: 8px;
 
@@ -360,19 +365,26 @@
         transform 150ms var(--ease-out);
     }
 
-    .button:hover {
+    .button:hover,
+    .button:focus-visible {
       transform: translateY(-1px);
     }
 
+    .button:active {
+      transform: translateY(0);
+
+      transition-duration: 50ms;
+    }
+
     .button-primary {
-      color: #07100d;
+      color: var(--on-accent);
 
       background: var(--accent-secondary);
       border-color: var(--accent-secondary);
     }
 
     .button-primary:hover {
-      background: #c2f7df;
+      background: var(--accent-secondary-hover);
     }
 
     .button-secondary:hover {
@@ -449,7 +461,7 @@
 
       border-radius: 50%;
 
-      background: #3f424c;
+      background: var(--decoration);
     }
 
     .terminal-title {
@@ -1062,7 +1074,7 @@
 
 <body>
 
-  <svg width="0" height="0" style="position: absolute;" aria-hidden="true">
+  <svg class="visually-hidden" aria-hidden="true">
     <symbol id="i-arrow-right" viewBox="0 0 24 24">
       <path d="M5 12h14M13 6l6 6-6 6" />
     </symbol>
@@ -1545,7 +1557,7 @@
     <div class="container footer-content">
 
       <span>
-        © <span id="year"></span> Diego Cornejo
+        © <span id="year">2026</span> Diego Cornejo
       </span>
 
       <div class="footer-links">
