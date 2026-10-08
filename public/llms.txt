@@ -1,0 +1,32 @@
+# Diego Cornejo
+
+> SRE, DevOps engineer and software architect. Cloud infrastructure and SaaS platforms for telecom and connected devices, down to LoRaWAN integrations and binary payload decoding.
+
+Most of my work lives between the device and the cloud: getting data off the radio, making sense of it and running the platforms that depend on it.
+
+- IoT and protocol engineering: LoRa and LoRaWAN integrations, The Things Stack, binary payload decoding, protocol analysis, telemetry processing.
+- SaaS and telecom platforms: APIs, distributed systems and web applications (Node.js, TypeScript, Python, React, PostgreSQL, Redis), including LLM features like RAG and agents.
+- Cloud, SRE and networking: AWS, Azure, Oracle Cloud, Vercel, Cloudflare, Kubernetes, Terraform, Prometheus; monitoring, incident analysis, routing, VPNs, firewalls, DNS and authentication.
+
+## Pages
+
+- [Home](https://diegocornejo.com/): profile, areas of work and contact
+- [Blog](https://blog.diegocornejo.com): notes from the field on DevOps, cloud, security and IoT
+- [Blog archive](https://blog.diegocornejo.com/archive): all posts
+
+## Open source
+
+- [LoRa Packet Decoder](https://lora-packet.vercel.app): web app that decodes LoRaWAN packets, including with your own session keys
+- [Tektelic to TTS](https://github.com/diegofcornejo/tektelic-to-tts): migrates LoRaWAN devices from Tektelic to The Things Stack using ABP
+- [GitHub](https://github.com/diegofcornejo): other projects
+
+## Writing
+
+- [Deepsec / Vercel Security Harness: practical guide and troubleshooting](https://blog.diegocornejo.com/deepsec-vercel-security-harness-practical-guide)
+- [Setting Up a Monitoring Stack with Docker Compose](https://blog.diegocornejo.com/setting-up-a-monitoring-stack-in-docker-compose)
+- [Export AWS SSM Parameter Store as Environment Variables with Bash](https://blog.diegocornejo.com/export-aws-ssm-parameter-store-as-environment-variables-with-bash)
+
+## Contact
+
+- [Email](mailto:info@diegocornejo.com)
+- [LinkedIn](https://www.linkedin.com/in/diego-cornejo-devops-sre/)
